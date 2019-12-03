@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+    <div class="row">
+        <form action="{{ path("edit_perfil") }}" method="post">
+            <div class="col-md-12">
+                <h1>Perfil</h1>
+                <input type="hidden" name="_id" value="{{ id }}">
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" value="{{ nombre }}" name="_nombre">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="nombre">Apellido</label>
+                        <input type="text" class="form-control" value="{{ surname }}" name="_apellido" >
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="nombre">Email</label>
+                        <input type="text" class="form-control" value="{{ email }}" name="_email" >
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="nombre">Contraseña</label>
+                        <input type="text" class="form-control" value="{{ pass }}" name="_contraseña" >
+                    </div>
+                </div>
+
+                <div class="col-md-12">
+                    <div class="form-group">
+                        <label for="nombre">Nombre de Usuario</label>
+                        <input type="text" class="form-control" value="{{ nombreusuario }}" name="_nomusuario">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

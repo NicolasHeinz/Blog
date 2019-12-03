@@ -1,0 +1,149 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="col-md-12">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+            <a class="navbar-brand" href="#">Menu</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ path('home_homepage',{id:id})}}">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('profile', {id: id}) }}">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('home_profile', {id: id}) }}">Mis Posts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('entrada_homepage',{id: id}) }}">Crear Blog</a>
+                    </li>
+                    {% if (isAdmin == "admin") %}
+                       <li class="nav-item">
+                            <a href="{{ path('list_user') }}" class="nav-link">Listado de Usuarios</a>
+                       </li>
+                   {% endif %}
+                   <li class="nav-item">
+                        <a href="{{ path('logout') }}" class="nav-link">Salir</a>
+                   </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                {{ mensaje }}
+                {% for e in entradas %}
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-tittle">
+                                {{ e.titulo }}
+                            </h5>
+                            <p class="card-text">
+                                {{ e.cuerpo }}
+                            </p>
+                            {% if (e.autor == id) or (isAdmin == "admin") %}
+                                <button  class="btn btn-success btn-editar" data-usuario="{{ id }}" data-entrada="{{ e.id }}" data-titulo="{{ e.titulo }}" data-cuerpo="{{ e.cuerpo }}"
+                                data-toggle="modal" data-target="#modalEditar">
+                                Editar</button>
+
+                                <button class="btn btn-danger btn-eliminar" data-usuario="{{ id }}" data-entrada="{{ e.id }}" data-toggle="modal" data-target="#modalEditar" >Eliminar</button>
+
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+
+ <!-- Modal Editar-->
+    <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Editar Entrada</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ path('entrada_edit') }}" method="post" id="modalEntrada">
+                        <div class="form-group">
+                            <label for="titulo">Titulo</label>
+                            <input type="text" id="titulo-editado" class="form-control" name="_titulo-editado">
+                        </div>
+                        <div class="form-group">
+                            <label for="titulo">Texto</label>
+                            <textarea type="text" id="cuerpo-editado" class="form-control" name="_cuerpo-editado"></textarea>
+                        </div>
+                        <input type="hidden" id="id_editado" name="_id-editado">
+                        <input type="hidden" id="id_usuario" name="_id">
+                        <button type="submit" class="btn btn-success">Guardar</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Salir</button>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        $(document).ready(function() {
+
+            $(".btn-editar").click(function() {
+
+              $(".modal-title").text("Editar Entrada");
+              $(".modal-body").empty();
+              $(".modal-body").append("<form action=\"{{ path('entrada_edit') }}\" method=\"post\" id=\"modalEntrada\">");
+              $("#modalEntrada").append("<div id=\"header-modal-body\" class=\"form-group\">");
+              $("#header-modal-body").append("<label for=\"titulo\">Titulo</label>");
+              $("#header-modal-body").append("<input type=\"text\" id=\"titulo-editado\" class=\"form-control\" name=\"_titulo-editado\">");
+              $("#modalEntrada").append("</div>");
+              $("#modalEntrada").append("<div id=\"body-modal-body\"class=\"form-group\">");
+              $("#body-modal-body").append("<label for=\"titulo\">Texto</label>");
+              $("#body-modal-body").append("<textarea type=\"text\" id=\"cuerpo-editado\" class=\"form-control\" name=\"_cuerpo-editado\"></textarea>");
+              $("#modalEntrada").append("</div>");
+              $("#modalEntrada").append("<input type=\"hidden\" id=\"id_editado\" name=\"_id-editado\">");
+              $("#modalEntrada").append("<input type=\"hidden\" id=\"id_usuario\" name=\"_id\">");
+              $("#modalEntrada").append("<button type=\"submit\" class=\"btn btn-success\">Guardar</button>");
+              $(".modal-body").append("</form>");
+
+
+              $("#id_usuario").val($(this).data('usuario'));
+              $("#id_editado").val($(this).data('entrada'));
+              $("#titulo-editado").val($(this).data('titulo'));
+              $("#cuerpo-editado").val($(this).data('cuerpo'));
+
+            });
+
+            $(".btn-eliminar").click(function() {
+
+                $(".modal-title").text("Eliminar Entrada");
+                $(".modal-body").empty();
+                $(".modal-body").append("<form id=\"modaldelete\" action=\"{{ path('entrada_delet') }}\" method=\"post\">");
+
+                $("#modaldelete").append("<p> ¿Esta Seguro de Eliminar Esta Entrada?</p>");
+                $("#modaldelete").append("<input type=\"hidden\" id=\"id_eliminar\" name=\"_id-eliminar\">");
+                $("#modaldelete").append("<input type=\"hidden\" id=\"id_usuario_elimina\" name=\"_id\">");
+                $("#modaldelete").append("<button type=\"submit\" class=\"btn btn-success\">Confirmar</button>");
+                $(".modal-body").append("</form>");
+
+                $("#id_eliminar").val($(this).data('entrada'));
+                $("#id_usuario_elimina").val($(this).data('usuario'));
+
+
+            });
+        });
+    </script>
+{% endblock %}

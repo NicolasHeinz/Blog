@@ -1,0 +1,9 @@
+<span>
+    <select id="{{ table.id }}_rows_per_page" class="form-control">
+        {% for rowsPerPage in table.rowsPerPageOptions %}
+            <option value="{{ rowsPerPage }}">{{ rowsPerPage }}</option>
+        {% endfor %}
+    </select>
+
+    {{ "kiliktable.rows_per_page" |trans }}
+</span>

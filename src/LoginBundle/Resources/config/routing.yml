@@ -1,0 +1,20 @@
+registro:
+    path:     /registro/
+    defaults: { _controller: LoginBundle:Default:registro }
+
+login:
+    path:     /
+    defaults: { _controller: LoginBundle:Default:index }
+
+singup:
+    path: /auth
+    defaults: { _controller: LoginBundle:Default:singUp}
+
+
+logout:
+    path: /salir
+    defaults: { _controller: LoginBundle:Default:logout}
+
+edit_perfil:
+    path: /edit-perfil
+    defaults: { _controller: LoginBundle:Default:editPerfil}

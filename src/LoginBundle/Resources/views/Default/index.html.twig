@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <div class="row">
+            <form action="{{ path('singup') }}" method="post">
+                <div class="col-md-12 bg-secondary mt-3">
+                    <div class="form-group mt-4">
+                        <label for="email">Correo Electronico</label>
+                        <input type="email" class="form-control" id="email" name="_username">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Contraseña</label>
+                        <input type="password" class="form-control" id="pass" name="_password">
+                    </div>
+                    <div class="form-group text-center">
+                        <button class="btn btn-success" type="submit">Iniciar Sesion</button>
+
+                        <div class="mt-4">
+                            <a class="btn btn-primary" href="{{ path('registro') }}">Registrate</a>
+                            <div class="mt-2">
+                                <b>¿Olvidaste tu Contraseña?</b> <a href="#">Click Aqui!</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-4"></div>
+{% endblock %}

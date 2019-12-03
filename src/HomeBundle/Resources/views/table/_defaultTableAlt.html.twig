@@ -1,0 +1,89 @@
+{{ form_start(table.formView) }}
+
+    {# render before content here #}
+    {% block tableBeforePanel %}{% endblock tableBeforePanel %}
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {% include "@Home/table/_rowsPerPage.html.twig" %}
+
+                <div class="btn-group pull-right" role="group">
+                    {% block exportButton %}{% endblock exportButton %}
+                    {% include "@Home/table/_setup.html.twig" %}
+                </div>
+            </div>
+
+            <div class="panel-body table-responsive">
+                <table class="table table-bordered table-condensed table-hover" id="{{ table.id }}">
+
+                    <thead>
+                        {% block tableHead %}
+                            <tr class="text-nowrap">
+                                {# columns names #}
+                                {% block tableHeadStdColumns %}
+                                    {% for column in table.columns %}
+                                        {% include "@Home/table/_columnName.html.twig" %}
+                                    {% endfor %}
+                                {% endblock tableHeadStdColumns %}
+                            </tr>
+
+                            {# columns filters #}
+                            {% if table.columns|length > 0 %}
+                                <tr class="text-nowrap">
+                                    {% block tableHeadStdFilters %}
+                                        {% for column in table.columns %}
+                                            {% include "@Home/table/_columnFilter.html.twig" %}
+                                        {% endfor %}
+                                    {% endblock tableHeadStdFilters %}
+                                </tr>
+                            {% endif %}
+                        {% endblock tableHead %}
+                    </thead>
+
+                    <tbody id="{{ table.bodyId }}">
+                        {% block tableBody %}
+                            {% if tableRenderBody is defined %}
+                                {% for row in rows %}
+                                    <tr class="text-nowrap">
+                                        {% block tableBodyStdColumns %}
+                                            {% for column in table.columns %}
+                                                {% include "@Home/table/_columnCell.html.twig" %}
+                                            {% endfor %}
+                                        {% endblock tableBodyStdColumns %}
+                                    </tr>
+                                {% endfor %}
+                            {% endif %}
+                        {% endblock tableBody %}
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                {% block tableStats %}
+                    <div id="{{ table.id }}_stats">
+                        {% block tableStatsAjax %}
+                            {% include "@Home/table/_stats.html.twig" %}
+                        {% endblock tableStatsAjax %}
+                    </div>
+                {% endblock tableStats %}
+            </div>
+
+            <div class="col-md-6">
+                <span class="pull-right">
+                    {% block tablePagination %}
+                        <div id="{{ table.id }}_pagination" class="btn-group">
+                            {% block tablePaginationAjax %}
+                                {% include "@Home/table/_paginationNumbers.html.twig" %}
+                            {% endblock tablePaginationAjax %}
+                        </div>
+                    {% endblock tablePagination %}
+                </span>
+            </div>
+        </div>
+
+    {% block tableAfterPanel %}{% endblock tableAfterPanel %} {# render after content here #}
+
+{{ form_end(table.formView) }}
