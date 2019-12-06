@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block menu %}{% endblock %}
+{% block content %}
+    <div class="content">
+        <div class="row">
+            <h3>Recuperar Contraseña</h3>
+
+            <div class="col-md-6">
+                <form action="{{ path("recuperar_password") }}" method="post">
+                    <div class="form-group">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email) }}
+                        <div class="error-email">
+                            {{ form_errors(form.email) }}
+                        </div>
+                    </div>
+                   <button class="btn btn-success">Recuperar Contraseña</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

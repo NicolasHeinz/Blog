@@ -2,35 +2,71 @@
 
 namespace LoginBundle\Controller;
 
-use LoginBundle\Entity\users;
+use LoginBundle\Entity\User;
 use LoginBundle\Form\usersType;
+use LoginBundle\Repository\usersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\VarDumper\Cloner\Data;
 
 class DefaultController extends Controller
 {
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        return $this->render('@Login/Default/index.html.twig');
-    }
-
-    public function registroAction(Request $request)
-    {
-
-        $usuario = new users();
+        $usuario = new User();
 
         $form = $this->createForm(usersType::class,$usuario);
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted()){
+
+            $usuario = $form->getData();
+
+            $repository = $this->getDoctrine()->getRepository(User::class);
+
+            $usuarioLogin = $repository->findOneBy([
+                'email' => $usuario->getEmail(),
+                'password' => $usuario->getPassword(),
+                'active' => true
+            ]);
+
+            if($usuarioLogin){
+
+                $session = new Session();
+
+                $session->clear();
+
+                $session->set('id',$usuarioLogin->getId());
+                $session->set('rol',$usuarioLogin->getRol());
+
+                return $this->redirectToRoute('home_homepage');
+            }
+
+        }
+
+        return $this->render('@Login/Default/index.html.twig',[
+                'form' => $form->createView()
+            ]
+        );
+    }
+
+    public function registroAction(Request $request)
+    {
+        $usuario = new User();
+
+        $form = $this->createForm(usersType::class,$usuario);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted()){
 
             $usuario = $form->getData();
 
             $usuario->setCreatedDate(new \DateTime('now'));
-            $usuario->setActive(true);
-            $usuario->setRol("usuario");
+            $usuario->setActive(false);
+            $usuario->setRol(usersRepository::USER_ROL);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($usuario);
@@ -39,62 +75,50 @@ class DefaultController extends Controller
             return $this->redirectToRoute('login');
         }
 
-        return $this->render('@Login/Registro/registro.html.twig',array("form"=>$form->createView()));
-    }
-
-    public function singUpAction(Request $request)
-    {
-
-        $mail = $request->request->get('_username');
-        $pass = $request->request->get('_password');
-
-        $repository = $this->getDoctrine()->getRepository(users::class);
-
-        $usuario = $repository->findBy([
-            'email' => $mail,
-            'password' => $pass
-            ]);
-
-        if( ($usuario != null) && ($usuario[0]->getActive() == true) ){
-
-            $id =$usuario[0]->getId();
-
-            return $this->redirectToRoute('home_homepage',compact('id'));
-        }else{
-            return $this->render('@Login/Default/index.html.twig');
-        }
-
+        return $this->render('@Login/Registro/registro.html.twig', [
+            "form"=>$form->createView()
+            ]
+        );
     }
 
     public function logoutAction(Request $request)
     {
+        $request->getSession()->clear();
+
         return $this->redirectToRoute('login');
     }
 
-    public function editPerfilAction(Request $request)
+    public function recuperarAction(Request $request)
     {
-        $id = $request->request->get('_id');
-        $nombre = $request->request->get('_nombre');
-        $apellido = $request->request->get('_apellido');
-        $email = $request->request->get("_email");
-        $contraseña = $request->request->get('_contraseña');
-        $nombreUsuario = $request->request->get('_nomusuario');
+        $usuario = new User();
 
-        $repository = $this->getDoctrine()->getRepository(users::class);
+        $form = $this->createForm(usersType::class,$usuario);
 
-        $user = $repository->find($id);
+        $form->handleRequest($request);
 
-        $user->setName($nombre);
-        $user->setSurname($apellido);
-        $user->setEmail($email);
-        $user->setPassword($contraseña);
-        $user->setUsername($nombreUsuario);
+        if($form->isSubmitted()){
+           $usuario = $form->getData();
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
+           $repositoryUser = $this->getDoctrine()
+               ->getRepository(User::class);
+           $usuarioBuscado = $repositoryUser->findOneBy([
+               'email' => $usuario->getEmail()
+               ]
+           );
 
-        return $this->redirectToRoute("home_homepage",compact("id"));
+           if($usuarioBuscado){
 
+              return $this->render('@Login\Recuperar\vercontrasena.html.twig',[
+                    'password' => $usuarioBuscado->getPassword()
+                  ]
+              );
+           }
+
+        }
+
+        return $this->render('@Login\Recuperar\recuperar.html.twig',[
+                'form' => $form->createView()
+            ]
+        );
     }
 }

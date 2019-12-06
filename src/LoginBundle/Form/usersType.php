@@ -2,6 +2,7 @@
 
 namespace LoginBundle\Form;
 
+use LoginBundle\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -20,46 +21,37 @@ class usersType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name',TextType::class,array(
+            ->add('name',TextType::class, [
                 'label'=> 'Nombre',
-                'attr' => array('class'=>'form-control')
-            ))
-            ->add('surname', TextType::class,array(
+                'attr' => ['class'=>'form-control']
+            ])
+            ->add('surname', TextType::class, [
                 'label'=>'Apellido',
-                'attr' => array('class'=>'form-control')
-            ))
-            ->add('email', EmailType::class,array(
+                'attr' => ['class'=>'form-control']
+            ])
+            ->add('email', EmailType::class, [
                 'label' => 'Email',
-                'attr' => array('class'=>'form-control')
-            ))
-            ->add('username',TextType::class,array(
+                'attr' => ['class'=>'form-control']
+            ])
+            ->add('username',TextType::class, [
                 'label'=>'Nombre de Usuario',
-                'attr' => array('class'=>'form-control')
-            ))
-            ->add('password',PasswordType::class,array(
+                'attr' => ['class'=>'form-control']
+            ])
+            ->add('password',PasswordType::class, [
                 'label' => 'Contraseña',
-                'attr' => array('class'=>'form-control')
-            ))
-            ->add('Registrarte',SubmitType::class,array(
-                'attr' => array('class'=>'btn btn-success mt-3')
-            ));
+                'attr' => ['class'=>'form-control']
+            ])
+            ->add('Registrarte',SubmitType::class, [
+                'attr' => ['class'=>'btn btn-success m-3']
+            ]);
     }/**
      * {@inheritdoc}
      */
     public function configureOptions(OptionsResolver $resolver)
     {
-        $resolver->setDefaults(array(
-            'data_class' => 'LoginBundle\Entity\users'
-        ));
+        $resolver->setDefaults([
+            'data_class' => User::class
+        ]);
     }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getBlockPrefix()
-    {
-        return 'loginbundle_users';
-    }
-
 
 }

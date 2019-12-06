@@ -1,9 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <div class="col-md-8">
-        <h1>Nuevo Blog</h1>
-        {{ form(form) }}
-    </div>
 
+    <div class="col-md-8 offset-md-2 mt-5 card">
+        <div class="col-md-12 mt-4">
+            <h1 class="text-center"><span class="badge badge-primary">Nuevo Blog</span></h1>
+           <form action="{{ path('entrada_homepage') }}" method="post">
+               {{ form_label(form.titulo) }}
+               {{ form_widget(form.titulo) }}
+               {{ form_label(form.cuerpo) }}
+               {{ form_widget(form.cuerpo) }}
+               <div class="col-md-12 text-center mt-4 mb-4">
+                   <button type="submit" class="btn btn-success">Guardar</button>
+               </div>
+           </form>
+
+        </div>
+    </div>
 {% endblock %}

@@ -2,6 +2,8 @@
 
 namespace EntradaBundle\Repository;
 
+use Doctrine\ORM\Query\Expr;
+
 /**
  * EntradaRepository
  *
@@ -10,4 +12,18 @@ namespace EntradaBundle\Repository;
  */
 class EntradaRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllEntradas()
+    {
+        $qb = $this->createQueryBuilder('entrada');
+        return $qb->select('entrada')
+            ->join('LoginBundle\Entity\User',
+                'user',Expr\Join::WITH,
+                'entrada.autor = user.id')
+            ->where(
+                $qb->expr()->eq('user.active',':active')
+            )->setParameter('active',1)
+            ->getQuery()
+            ->getResult();
+
+    }
 }

@@ -3,7 +3,7 @@ home_homepage:
     defaults: { _controller: HomeBundle:Default:index }
 
 profile:
-    path: /profile/{id}
+    path: /profile/
     defaults: { _controller: HomeBundle:Default:profile}
 
 home_profile:
@@ -12,7 +12,7 @@ home_profile:
 
 list_user_ajax:
     path: /list/ajax
-    defaults: { _controller: HomeBundle:Default:_listUser}
+    defaults: { _controller: HomeBundle:Default:ajaxListUser}
 
 list_user:
     path: /list

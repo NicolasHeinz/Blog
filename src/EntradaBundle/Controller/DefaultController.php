@@ -2,6 +2,7 @@
 
 namespace EntradaBundle\Controller;
 
+use DateTime;
 use EntradaBundle\Entity\Entrada;
 use EntradaBundle\Form\EntradaType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -11,7 +12,7 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $id = $request->get('id');
+        $id = $request->getSession()->get('id');
 
         $entrada = new Entrada();
 
@@ -19,37 +20,51 @@ class DefaultController extends Controller
 
         $form->handleRequest($request);
 
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted()){
 
             $entrada = $form->getData();
 
+            $serviceTransfor = $this->get('app.transform_text');
+
+            $newTitle = $serviceTransfor->TransformText($entrada->getTitulo());
+            $entrada->setTitulo($newTitle);
+
+            $newBody = $serviceTransfor->TransformText($entrada->getCuerpo());
+            $entrada->setCuerpo($newBody);
+
             $entrada->setAutor($id);
-            $entrada->setFechaCreacion(new \DateTime('now'));
+            $entrada->setFechaCreacion(new DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($entrada);
             $em->flush();
 
-            return $this->redirectToRoute('home_homepage',compact('id'));
+            return $this->redirectToRoute('home_homepage');
         }
 
-        return $this->render('@Entrada/Default/index.html.twig',array("form"=>$form->createView()));
-    }
-
-    public function newBlogAction(){
-
-        return $this->render('@Home/Default/index.html.twig');
+        return $this->render('@Entrada/Default/index.html.twig',[
+            "form"=>$form->createView()
+            ]
+        );
     }
 
     public function editEntradaAction(Request $request){
+
+        $serviceTransfor = $this->get('app.transform_text');
+
         $path= substr($request->headers->get('referer'),-18,13);
 
-        $id = $request->request->get('_id');
-        $id_entrada = $request->request->get('_id-editado');
-        $titulo = $request->request->get('_titulo-editado');
-        $cuerpo = $request->request->get('_cuerpo-editado');
+        $id_entrada = $request->request->get('_id_entrada');
 
-        $repository = $this->getDoctrine()->getRepository(Entrada::class);
+        $titulo = $serviceTransfor->TransformText(
+            $request->request->get('entradabundle_entrada')['titulo']
+        );
+        $cuerpo =$serviceTransfor->TransformText(
+            $request->request->get('entradabundle_entrada')['cuerpo']
+        );
+
+        $repository = $this->getDoctrine()
+            ->getRepository(Entrada::class);
 
         $entradaEditada = $repository->find($id_entrada);
 
@@ -60,29 +75,31 @@ class DefaultController extends Controller
         $em->persist($entradaEditada);
         $em->flush();
 
-
         if($path == "profile/home/"){
-            return $this->redirectToRoute('home_profile',compact('id'));
-        }else{
-            return $this->redirectToRoute('home_homepage',compact('id'));
+            return $this->redirectToRoute('home_profile',[
+                'id' =>  $request->request->get('_id')
+            ]);
         }
+
+        return $this->redirectToRoute('home_homepage',[
+            'id' =>  $request->request->get('_id')
+        ]);
 
     }
 
-
     public function deletEntradaAction(Request $request){
 
-        $id = $request->request->get('_id');
         $id_entrada = $request->request->get('_id-eliminar');
 
         $em = $this->getDoctrine()->getManager();
-        $entradaPorEliminar = $em->getRepository(Entrada::class)->find($id_entrada);
+        $entradaPorEliminar = $em->getRepository(Entrada::class)
+            ->find($id_entrada);
 
         $em->remove($entradaPorEliminar);
         $em->flush();
 
         $this->addFlash('info', 'Registro borrado');
 
-        return $this->redirectToRoute('home_homepage',compact('id'));
+        return $this->redirectToRoute('home_homepage');
     }
 }

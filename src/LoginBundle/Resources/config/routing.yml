@@ -6,15 +6,10 @@ login:
     path:     /
     defaults: { _controller: LoginBundle:Default:index }
 
-singup:
-    path: /auth
-    defaults: { _controller: LoginBundle:Default:singUp}
-
-
 logout:
     path: /salir
     defaults: { _controller: LoginBundle:Default:logout}
 
-edit_perfil:
-    path: /edit-perfil
-    defaults: { _controller: LoginBundle:Default:editPerfil}
+recuperar_password:
+    path: /recuperar
+    defaults: { _controller: LoginBundle:Default:recuperar}

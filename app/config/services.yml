@@ -34,6 +34,6 @@ services:
     #     arguments:
     #         $someArgument: 'some_value'
 
-    app.prueba:
-        class: HomeBundle\Services\Prueba
+    app.transform_text:
+        class: EntradaBundle\Services\ServiceEntrada
         public: true

@@ -2,6 +2,8 @@
 
 namespace LoginBundle\Repository;
 
+use EntradaBundle\EntradaBundle;
+
 /**
  * usersRepository
  *
@@ -10,4 +12,28 @@ namespace LoginBundle\Repository;
  */
 class usersRepository extends \Doctrine\ORM\EntityRepository
 {
+    /**
+     * string
+     */
+    const USER_ROL = 'Usuario';
+
+    /**
+     * string
+     */
+    const USER_ADMIN = 'Administrador';
+
+    /**
+     * string
+     */
+    const USER_ALTA = 'Alta';
+
+    /**
+     * string
+     */
+    const USER_BAJA= 'Baja';
+
+    public function getQueryTable(){
+        return $this->createQueryBuilder('u')
+            ->select('u');
+    }
 }

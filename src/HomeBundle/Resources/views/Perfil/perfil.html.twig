@@ -1,46 +1,86 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
+    <div class="col-md-4 offset-md-4 mt-5 card">
+        <div class="col-md-12 mt-4">
+            <form action="{{ path("profile") }}" method="post">
 
-    <div class="row">
-        <form action="{{ path("edit_perfil") }}" method="post">
-            <div class="col-md-12">
-                <h1>Perfil</h1>
-                <input type="hidden" name="_id" value="{{ id }}">
+                <h1 class="text-center"><span class="badge badge-primary">Perfil</span></h1>
+                <input type="hidden" name="id" id="id" value="{{ user.id }}">
 
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="nombre">Nombre</label>
-                        <input type="text" class="form-control" value="{{ nombre }}" name="_nombre">
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="nombre">Apellido</label>
-                        <input type="text" class="form-control" value="{{ surname }}" name="_apellido" >
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="nombre">Email</label>
-                        <input type="text" class="form-control" value="{{ email }}" name="_email" >
-                    </div>
-                </div>
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="nombre">Contraseña</label>
-                        <input type="text" class="form-control" value="{{ pass }}" name="_contraseña" >
-                    </div>
+                {% if app.session.get('rol') == constant('LoginBundle\\Repository\\usersRepository::USER_ADMIN') %}
+
+                <div class="form-group">
+                    <select class="form-control" id="select_rol" name="_select_rol">
+                        {% for r in roles %}
+                            {% if user.rol == r %}
+                                <option selected>{{ r }}</option>
+                            {% else %}
+                                <option>{{ r }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
                 </div>
 
-                <div class="col-md-12">
-                    <div class="form-group">
-                        <label for="nombre">Nombre de Usuario</label>
-                        <input type="text" class="form-control" value="{{ nombreusuario }}" name="_nomusuario">
-                    </div>
+                <div class="form-group">
+                    <select class="form-control" id="select_active" name="_select_active">
+                        {% for a in status %}
+                            {% if (user.active == 1) and (a == constant('LoginBundle\\Repository\\usersRepository::USER_ALTA')) %}
+                                <option selected>{{ a }}</option>
+                            {% elseif (user.active == 0) and (a == constant('LoginBundle\\Repository\\usersRepository::USER_BAJA')) %}
+                                <option selected>{{ a }}</option>
+                            {% else %}
+                                <option> {{ a }}</option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
                 </div>
-                <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-        </form>
+                {% endif %}
+
+
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name,{'value':user.name}) }}
+
+                {{ form_label(form.surname) }}
+                {{ form_widget(form.surname,{'value':user.surname}) }}
+
+                {{ form_label(form.email) }}
+                {{ form_widget(form.email,{'value':user.email}) }}
+
+                {{ form_label(form.password) }}
+                {{ form_widget(form.password,{'value':user.password}) }}
+
+                {{ form_label(form.username) }}
+                {{ form_widget(form.username,{'value':user.username}) }}
+                <!--<div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" value="{{ user.name }}" name="_nombre">
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Apellido</label>
+                    <input type="text" class="form-control" value="{{ user.surname }}" name="_apellido" >
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Email</label>
+                    <input type="text" class="form-control" value="{{ user.email }}" name="_email" >
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Contraseña</label>
+                    <input type="text" class="form-control" value="{{ user.password }}" name="_contraseña" >
+                </div>
+
+                <div class="form-group">
+                    <label for="nombre">Nombre de Usuario</label>
+                    <input type="text" class="form-control" value="{{ user.username }}" name="_nomusuario">
+                </div>-->
+
+                <div class="col-md-12 text-center mt-3 mb-3">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div>
     </div>
 {% endblock %}

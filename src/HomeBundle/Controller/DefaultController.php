@@ -4,13 +4,14 @@ namespace HomeBundle\Controller;
 
 
 use EntradaBundle\Entity\Entrada;
-use HomeBundle\Services\FileManager;
+use EntradaBundle\Form\EntradaType;
+use EntradaBundle\Repository\EntradaRepository;
 use Kilik\TableBundle\Components\Column;
 use Kilik\TableBundle\Components\Filter;
 use Kilik\TableBundle\Components\Table;
-use LoginBundle\Entity\users;
-use LoginBundle\LoginBundle;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use LoginBundle\Entity\User;
+use LoginBundle\Form\usersType;
+use LoginBundle\Repository\usersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -23,146 +24,266 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $p = $this->get('app.prueba');
-        $mensaje = $p->sendMenssage("Hola soy un servicio");
+      /** @var EntradaRepository $repositoryUser */
+        $repositoryEntrada = $this->getDoctrine()
+            ->getRepository(Entrada::class);
 
+        $entrada  = new Entrada();
 
+        $entradas = $repositoryEntrada->getAllEntradas();
 
-        $id = $request->get('id');
+        $formEntrada = $this->createForm(EntradaType::class,$entrada);
 
-        $repositoryUser = $this->getDoctrine()->getRepository(users::class);
+        $formEntrada->handleRequest($request);
 
-        $em = $this->getDoctrine()->getManager();
+        if($formEntrada->isSubmitted() && $formEntrada->isValid()){
 
-        $queryEntradas = $em->createQuery(
-            'SELECT e
-            FROM EntradaBundle:Entrada e
-            Join LoginBundle:users u
-            IN u.id = e.autor
-            WHERE u.active = 1'
+            $serviceTransfor = $this->get('app.transform_text');
+
+            $id_entrada = $request->get('_id_entrada');
+
+            $entrada = $formEntrada->getData();
+
+            $repository = $this->getDoctrine()
+                ->getRepository(Entrada::class);
+
+            $entradaPorEditar = $repository->find($id_entrada);
+
+            $entradaPorEditar->setTitulo(
+                $serviceTransfor->TransformText($entrada->getTitulo())
+            );
+
+            $entradaPorEditar->setCuerpo(
+                $serviceTransfor->TransformText($entrada->getCuerpo())
+            );
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entradaPorEditar);
+            $em->flush();
+        }
+
+        return $this->render('@Home/Default/index.html.twig',[
+            'id' => $request->getSession()->get('id'),
+            'entradas' => $entradas,
+            'isAdmin' =>$request->getSession()->get('rol'),
+            'formEntrada' => $formEntrada->createView()
+            ]
         );
-
-        $entradas = $queryEntradas->getResult();
-
-        $isAdmin = $repositoryUser->find($id)->getRol();
-
-        return $this->render('@Home/Default/index.html.twig',compact('id','entradas','isAdmin','mensaje'));
     }
 
-    public function profileAction($id)
+    public function profileAction(Request $request)
     {
+        $repository = $this->getDoctrine()
+            ->getRepository(User::class);
 
-        $repository = $this->getDoctrine()->getRepository(users::class);
+        $usuario = new User();
 
-        $user = $repository->find($id);
+        $form = $this->createForm(usersType::class,$usuario);
 
-        $nombre = $user->getName();
-        $email = $user->getEmail();
-        $pass = $user->getPassword();
-        $surname = $user->getSurname();
-        $nombreusuario = $user->getUsername();
+        $roles = [usersRepository::USER_ROL,usersRepository::USER_ADMIN];
+        $Status = [usersRepository::USER_ALTA,usersRepository::USER_BAJA];
 
-        return $this->render('@Home/Perfil/perfil.html.twig',compact('id','nombre','email','pass','surname','nombreusuario'));
+        $user = $repository->find($request->get('id'));
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted()){
+            $usuarioDatos = $form->getData();
+
+            $user->setName($usuarioDatos->getName());
+            $user->setSurname($usuarioDatos->getSurname());
+            $user->setEmail($usuarioDatos->getEmail());
+            $user->setPassword($usuarioDatos->getPassword());
+            $user->setUsername($usuarioDatos->getUsername());
+
+
+            if($request->getSession()->get('rol') ==
+                usersRepository::USER_ADMIN){
+
+                $activo= $request->request->get('_select_active');
+                $rol = $request->request->get('_select_rol');
+
+                if($activo == "Alta"){
+                    $activo = true;
+                }elseif($activo == "Baja"){
+                    $activo = false;
+                }
+
+                $user->setActive($activo);
+                $user->setRol($rol);
+
+                if($user->getId() == $request->getSession()->get('id')){
+                    $request->getSession()->set('rol',$rol);
+                    $request->getSession()->set('activo',$activo);
+                }
+            }
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute("home_homepage");
+        }
+
+        return $this->render('@Home/Perfil/perfil.html.twig',[
+            'user' => $user,
+            'roles' => $roles,
+            'status'=> $Status,
+            'form' => $form->createView()
+            ]
+        );
     }
 
     public function profileHomeAction(Request $request)
     {
-        $id = $request->get('id');
+        /** @var EntradaRepository $repository */
+        $repository = $this->getDoctrine()
+            ->getRepository(Entrada::class);
 
-        $repository = $this->getDoctrine()->getRepository(Entrada::class);
-        $entradas = $repository->findByAutor($id);
+        $entradas = $repository->findByAutor(
+            $request->getSession()->get('id')
+        );
 
-        return $this->render('@Home/Perfil/home_perfil.html.twig',compact('entradas','id'));
+        $entrada  = new Entrada();
+
+        $formEntradaProfile = $this->createForm(EntradaType::class,$entrada);
+
+        $formEntradaProfile->handleRequest($request);
+
+        if($formEntradaProfile->isSubmitted() && $formEntradaProfile->isValid()){
+
+            $serviceTransfor = $this->get('app.transform_text');
+
+            $id_entrada = $request->get('_id_entrada');
+
+            $entrada = $formEntradaProfile->getData();
+
+            $repository = $this->getDoctrine()
+                ->getRepository(Entrada::class);
+
+            $entradaPorEditar = $repository->find($id_entrada);
+
+            $entradaPorEditar->setTitulo(
+                $serviceTransfor->TransformText($entrada->getTitulo())
+            );
+
+            $entradaPorEditar->setCuerpo(
+                $serviceTransfor->TransformText($entrada->getCuerpo())
+            );
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entradaPorEditar);
+            $em->flush();
+        }
+
+        return $this->render('@Home/Perfil/home_perfil.html.twig',[
+                'entradas' => $entradas,
+                'formEntrada' => $formEntradaProfile->createView()
+            ]
+        );
     }
 
 
     public function tableUsersTable()
     {
-        $queryBuilder = $this->getDoctrine()->getRepository('LoginBundle:users')
-            ->createQueryBuilder('u')->select('u');
+        $queryBuilder = $this->getDoctrine()
+            ->getRepository(User::class)->getQueryTable();
 
         $table = (new Table())
             ->setRowsPerPage(10)
             ->setId('table_users')
             ->setPath($this->generateUrl('list_user_ajax'))
             ->setQueryBuilder($queryBuilder, 'u')
+            ->setTemplate('@Home/t/_defaultTableAlt.html.twig')
+            ->addColumn(
+                (new Column())->setLabel('ID')
+                    ->setSort(['u.id' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.id')
+                            ->setName('u_id')
+                    )
+            )
             ->addColumn(
                 (new Column())->setLabel('Nombre')
-                            ->setSort(['u.name' => 'asc'])
-                            ->setFilter(
-                                (new Filter())
-                                    ->setField('u.name')
-                                    ->setName('u_name')
-                            )
+                    ->setSort(['u.name' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.name')
+                            ->setName('u_name')
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Apellido')
+                    ->setSort(['u.surname' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.surname')
+                            ->setName('u_surname')
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Email')
+                    ->setSort(['u.email' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.email')
+                            ->setName('u_email')
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Nombre Usuario')
+                    ->setSort(['u.username' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.username')
+                            ->setName('u_username')
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Contraseña')
+                    ->setSort(['u.password' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.password')
+                            ->setName('u_password')
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Fecha Creacion')
+                    ->setSort(['u.createdDate' => 'asc'])
+                    ->setDisplayFormat(Column::FORMAT_DATE)
+                    ->setDisplayFormatParams('d/m/Y')
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.createdDate')
+                            ->setName('u_createdDate')
+                            ->setDataFormat(Filter::FORMAT_DATE)
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Activo')
+                    ->setSort(['u.active' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.active')
+                            ->setName('u_active')
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Rol')
+                    ->setSort(['u.rol' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.rol')
+                            ->setName('u_rol')
+                    )
             );
-//            ->addColumn(
-//                (new Column())->setLabel('Apellido')
-//                    ->setSort(['u.surname' => 'asc'])
-//                    ->setFilter(
-//                        (new Filter())
-//                            ->setField('u.surname')
-//                            ->setName('u_surname')
-//                    )
-//            )
-//            ->addColumn(
-//                (new Column())->setLabel('Email')
-//                    ->setSort(['u.email' => 'asc'])
-//                    ->setFilter(
-//                        (new Filter())
-//                            ->setField('u.email')
-//                            ->setName('u_email')
-//                    )
-//            )
-//            ->addColumn(
-//                (new Column())->setLabel('Nombre Usuario')
-//                    ->setSort(['u.username' => 'asc'])
-//                    ->setFilter(
-//                        (new Filter())
-//                            ->setField('u.username')
-//                            ->setName('u_username')
-//                    )
-//            )
-//            ->addColumn(
-//                (new Column())->setLabel('Contraseña')
-//                    ->setSort(['u.password' => 'asc'])
-//                    ->setFilter(
-//                        (new Filter())
-//                            ->setField('u.password')
-//                            ->setName('u_password')
-//                    )
-//            )
-//            ->addColumn(
-//                (new Column())->setLabel('Fecha Creacion')
-//                    ->setSort(['u.created_date' => 'asc'])
-//                    ->setFilter(
-//                        (new Filter())
-//                            ->setField('u.created_date')
-//                            ->setName('u_created_date')
-//                    )
-//            )
-//            ->addColumn(
-//                (new Column())->setLabel('Activo')
-//                    ->setSort(['u.active' => 'asc'])
-//                    ->setFilter(
-//                        (new Filter())
-//                            ->setField('u.active')
-//                            ->setName('u_active')
-//                    )
-//            )
-//            ->addColumn(
-//                (new Column())->setLabel('Rol')
-//                    ->setSort(['u.rol' => 'asc'])
-//                    ->setFilter(
-//                        (new Filter())
-//                            ->setField('u.rol')
-//                            ->setName('u_rol')
-//                    )
-//            );
 
         return $table;
     }
 
-    public function _listUserAction(Request $request)
+    public function ajaxListUserAction(Request $request)
     {
         return $this->get('kilik_table')->handleRequest(
             $this->tableUsersTable(),
@@ -170,8 +291,14 @@ class DefaultController extends Controller
         );
     }
 
-    public function listAction()
+    public function listAction(Request $request)
     {
-        return $this->render('@Home/Tablas/userlista.html.twig', ['table'=> $this->get('kilik_table')->createFormView($this->tableUsersTable())]);
+        return $this->render(
+            '@Home/Tablas/userlista.html.twig', [
+                'table'=> $this->get('kilik_table')->createFormView(
+                    $this->tableUsersTable()
+                )
+            ]
+        );
     }
 }

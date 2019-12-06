@@ -1,0 +1,98 @@
+{# @KilikTable/_defaultTableAlt.html.twig #}
+{% use "@KilikTable/_blocks.html.twig" with
+    tableHeadMassActionsColumn as parent_tableHeadMassActionsColumn,
+    tableFilterMassActionsColumn as parent_tableFilterMassActionsColumn,
+    tableBodyMassActionsColumn as parent_tableBodyMassActionsColumn
+%}
+{# @param Kilik\Components\Table table #}
+{{ form_start(table.formView) }}
+{% block tableBeforePanel %}
+{% endblock tableBeforePanel %}
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <div class="panel-title">
+            {% block tableTitle %}
+                Default title
+            {% endblock tableTitle %}
+        </div>
+
+        {# setup of the list: hidden columns, rows per page ... #}
+        {% include "@KilikTable/_setup.html.twig" %}
+        {% include "@KilikTable/_rowsPerPage.html.twig" %}
+
+    </div>
+    <div class="panel-body table-responsive">
+        <table class="table table-hover table-striped table-bordered" id="{{ table.id }}">
+            <thead>
+                {% block tableHead %}
+                    <tr>
+
+                        {# columns names #}
+                        {% block tableHeadMassActionsColumn %}
+                            {{ block('parent_tableHeadMassActionsColumn') }}
+                        {% endblock %}
+                        {% block tableHeadStdColumns %}
+                            {% for column in table.columns %}
+                                {% include "@KilikTable/_columnName.html.twig" %}
+                            {% endfor %}
+                        {% endblock tableHeadStdColumns %}
+                    </tr>
+                    {# columns filters #}
+                    {% if table.columns|length > 0 %}
+                        <tr>
+                            {% block tableFilterMassActionsColumn %}
+                                {{ block('parent_tableFilterMassActionsColumn') }}
+                            {% endblock %}
+                            {% block tableHeadStdFilters %}
+                                {% for column in table.columns %}
+                                    {% include "@KilikTable/_columnFilter.html.twig" %}
+                                {% endfor %}
+                            {% endblock tableHeadStdFilters %}
+                        </tr>
+                    {% endif %}
+                {% endblock tableHead %}
+            </thead>
+            <tbody id="{{ table.bodyId }}">
+                {% block tableBody %}
+                    {% if tableRenderBody is defined %}
+                        {% for row in rows %}
+                            <tr>
+                                {% block tableBodyMassActionsColumn %}
+                                    {{ block('parent_tableBodyMassActionsColumn') }}
+                                {% endblock %}
+                                {% block tableBodyStdColumns %}
+                                    {% for column in table.columns %}
+                                        {% include "@KilikTable/_columnCell.html.twig" %}
+                                    {% endfor %}
+                                {% endblock tableBodyStdColumns %}
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                {% endblock tableBody %}
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="col-md-6">
+    {% block tableStats %}
+        <div id="{{ table.id }}_stats">
+            {% block tableStatsAjax %}
+                {% include "@KilikTable/_stats.html.twig" %}
+            {% endblock tableStatsAjax %}
+        </div>
+    {% endblock tableStats %}
+</div>
+<div class="col-md-6">
+    <span class="pull-right">
+        {% block tablePagination %}
+            <div id="{{ table.id }}_pagination" class="btn-group">
+                {% block tablePaginationAjax %}
+                    {% include "@KilikTable/_paginationNumbers.html.twig" %}
+                {% endblock tablePaginationAjax %}
+            </div>
+        {% endblock tablePagination %}
+    </span>
+</div>
+{% block tableAfterPanel %}
+{% endblock tableAfterPanel %}
+{{ form_end(table.formView) }}

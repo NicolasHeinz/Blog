@@ -2,10 +2,6 @@ entrada_homepage:
     path:     /blog
     defaults: { _controller: EntradaBundle:Default:index }
 
-entrada_nueva:
-    path: /nuevoblog
-    defaults: { _controller: EntradaBundle:Default:newBlog }
-
 entrada_edit:
     path: /edit
     defaults: { _controller: EntradaBundle:Default:editEntrada}

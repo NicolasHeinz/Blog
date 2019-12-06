@@ -6,9 +6,9 @@ class Prueba
 {
     private $mensaje = 'aa';
 
-    public function sendMenssage($men="No Mandaste Nada")
+    public function sendMenssage($men="NO MANDASTE NADA")
     {
-        $this->mensaje = $men;
-        return $this->mensaje;
+        $this->mensaje = mb_strtolower($men);
+        return  ucfirst($this->mensaje);
     }
 }

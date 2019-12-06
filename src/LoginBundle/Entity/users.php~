@@ -75,9 +75,9 @@ class users
     /**
      * @var string
      *
-     * @ORM\Column(name="rol", type="string", length=255, options={"default":"usuario"})
+     * @ORM\Column(name="rol", type="string", length=255, options={"default":"Usuario"})
      */
-    private $rol=["usuario","admin"];
+    private $rol=["Usuario","Administrador"];
 
 
     /**

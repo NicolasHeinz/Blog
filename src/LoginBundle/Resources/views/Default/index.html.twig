@@ -1,32 +1,51 @@
 {% extends 'base.html.twig' %}
 
+{% block menu %}{% endblock %}
 {% block content %}
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-        <div class="row">
-            <form action="{{ path('singup') }}" method="post">
-                <div class="col-md-12 bg-secondary mt-3">
-                    <div class="form-group mt-4">
-                        <label for="email">Correo Electronico</label>
-                        <input type="email" class="form-control" id="email" name="_username">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Contraseña</label>
-                        <input type="password" class="form-control" id="pass" name="_password">
-                    </div>
-                    <div class="form-group text-center">
-                        <button class="btn btn-success" type="submit">Iniciar Sesion</button>
 
-                        <div class="mt-4">
-                            <a class="btn btn-primary" href="{{ path('registro') }}">Registrate</a>
-                            <div class="mt-2">
-                                <b>¿Olvidaste tu Contraseña?</b> <a href="#">Click Aqui!</a>
-                            </div>
+    <div class="col-md-4 offset-md-4 alto card">
+        <form action="{{ path('login') }}" method="post">
+            <div class="col-md-12  mt-3">
+                <div class="form-group mt-4">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email)}}
+                    <div class="errors-form">
+                        {{ form_errors(form.email) }}
+                    </div>
+                </div>
+                <div class="form-group">
+                    {{ form_label(form.password) }}
+                    {{ form_widget(form.password) }}
+                    <div class="errors-form">
+                        {{ form_errors(form.password) }}
+                    </div>
+                </div>
+                <div class="form-group text-center">
+                    <div class="mt-5">
+                        <a class="btn btn-primary" href="{{ path('registro') }}">Registrate</a>
+                        <button class="btn btn-success" type="submit">Iniciar Sesion</button>
+                        <div class="mt-5">
+                            <b>¿Olvidaste tu Contraseña?</b> <a href="{{ path("recuperar_password") }}">Click Aqui!</a>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
-    <div class="col-md-4"></div>
+{% endblock %}
+
+{% block stylesheets %}
+    <style>
+        .errors-form{
+            color: red;
+        }
+
+        .errors-form ul{
+            list-style:none !important;
+        }
+
+        .alto{
+            margin-top: 5em;
+        }
+    </style>
 {% endblock %}
