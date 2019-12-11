@@ -84,7 +84,7 @@ class __TwigTemplate_55a309e73ea1d989c7b22c1af48c954662a5d6ea222da80219aa7786d40
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "content"));
 
         // line 5
-        echo "    <div class=\"row\">
+        echo "    <!--<div class=\"row\">
         <div class=\"col-md-12\">
             <h4>Tu contraseña es: ";
         // line 7
@@ -97,7 +97,9 @@ class __TwigTemplate_55a309e73ea1d989c7b22c1af48c954662a5d6ea222da80219aa7786d40
                 Iniciar Sesion
             </a>
         </div>
-    </div>
+    </div>-->
+
+
 ";
         
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->leave($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof);
@@ -128,14 +130,16 @@ class __TwigTemplate_55a309e73ea1d989c7b22c1af48c954662a5d6ea222da80219aa7786d40
 
 {% block menu %}{% endblock %}
 {% block content %}
-    <div class=\"row\">
+    <!--<div class=\"row\">
         <div class=\"col-md-12\">
             <h4>Tu contraseña es: {{ password }}</h4>
             <a class=\"btn btn-primary\" href=\"{{ path('login') }}\">
                 Iniciar Sesion
             </a>
         </div>
-    </div>
+    </div>-->
+
+
 {% endblock %}", "@Login\\Recuperar\\vercontrasena.html.twig", "/home/nicolas/Documentos/Blog/src/LoginBundle/Resources/views/Recuperar/vercontrasena.html.twig");
     }
 }

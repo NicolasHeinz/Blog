@@ -2,24 +2,72 @@
 
 {% block menu %}{% endblock %}
 {% block content %}
-    <div class="content">
-        <div class="row">
-            <h3>Recuperar Contraseña</h3>
 
-            <div class="col-md-6">
-                <form action="{{ path("recuperar_password") }}" method="post">
-                    <div class="form-group">
-                        {{ form_label(form.email) }}
-                        {{ form_widget(form.email) }}
-                        <div class="error-email">
-                            {{ form_errors(form.email) }}
-                        </div>
+    {% if form %}
+        <div class="col-md-6 mt-5 card offset-md-3">
+            <h3 class="mt-4 text-center">Recuperar Contraseña</h3>
+            <form class="mt-4 mb-4"
+                  method="post"
+            >
+                <div class="form-group">
+                    {{ form_label(form.email) }}
+                    {{ form_widget(form.email) }}
+                    <div class="error-email">
+                        {{ form_errors(form.email) }}
                     </div>
-                   <button class="btn btn-success">
-                       Recuperar Contraseña
-                   </button>
-                </form>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-success"
+                            data-toggle="modal"
+                            data-target="#modalRecuperar">
+                        Recuperar Contraseña
+                    </button>
+                </div>
+            </form>
+        </div>
+    {% endif %}
+
+    {% if password %}
+        <!-- Modal Recuperar Password-->
+        <div class="modal fade" id="modalRecuperar" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel">
+                        <span class="badge badge-light">
+                            Contraseña Recuperada
+                        </span>
+                        </h4>
+                        <button type="button" class="close"
+                                data-dismiss="modal"
+                                aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+
+                    <form  action="{{ path('login') }}" method="get">
+                        <div class="modal-body">
+                            <h4>Tu contraseña es: {{password}}</h4>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit"
+                                    class="btn btn-primary">
+                                Iniciar Sesion
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
-    </div>
+    {% endif %}
+
+{% endblock %}
+
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('#modalRecuperar').modal('toggle');
+        });
+    </script>
 {% endblock %}

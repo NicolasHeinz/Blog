@@ -39,7 +39,7 @@ class DefaultController extends Controller
             $em->persist($entrada);
             $em->flush();
 
-            return $this->redirectToRoute('home_homepage');
+            return $this->redirectToRoute('home_profile');
         }
 
         return $this->render('@Entrada/Default/index.html.twig',[

@@ -88,8 +88,9 @@ class DefaultController extends Controller
            if($usuarioBuscado){
 
               return $this->render(
-                  '@Login\Recuperar\vercontrasena.html.twig',
+                  '@Login\Recuperar\recuperar.html.twig',
                   [
+                    'form' => null,
                     'password' => $usuarioBuscado->getPassword()
                   ]
               );
@@ -98,7 +99,8 @@ class DefaultController extends Controller
         }
 
         return $this->render('@Login\Recuperar\recuperar.html.twig',[
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'password' => null
             ]
         );
     }
