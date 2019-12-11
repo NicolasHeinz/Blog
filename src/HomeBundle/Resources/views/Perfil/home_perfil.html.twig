@@ -51,9 +51,12 @@
 
 {% endblock %}
 
-{% block javascripts %}
+{% block scripts %}
     <script>
         $(document).ready(function() {
+
+            $(".navbar-nav").find(".active").removeClass("active");
+            $(".miposts").addClass("active");
 
             $(".btn-editar").click(function() {
 

@@ -13,3 +13,7 @@ logout:
 recuperar_password:
     path: /recuperar
     defaults: { _controller: LoginBundle:Default:recuperar}
+
+log-in:
+    path: /login
+    defaults: { _controller: LoginBundle:Default:login}

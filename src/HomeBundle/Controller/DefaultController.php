@@ -24,6 +24,7 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
+
       /** @var EntradaRepository $repositoryUser */
         $repositoryEntrada = $this->getDoctrine()
             ->getRepository(Entrada::class);
@@ -63,9 +64,7 @@ class DefaultController extends Controller
         }
 
         return $this->render('@Home/Default/index.html.twig',[
-            'id' => $request->getSession()->get('id'),
             'entradas' => $entradas,
-            'isAdmin' =>$request->getSession()->get('rol'),
             'formEntrada' => $formEntrada->createView()
             ]
         );

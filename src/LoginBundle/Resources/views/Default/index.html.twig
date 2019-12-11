@@ -4,11 +4,18 @@
 {% block content %}
 
     <div class="col-md-4 offset-md-4 alto card">
-        <form action="{{ path('login') }}" method="post">
+        {% if error %}
+            <div class="alert alert-danger mt-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
+
+
+        <form action="{{ path('log-in') }}" method="post">
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
             <div class="col-md-12  mt-3">
                 <div class="form-group mt-4">
                     {{ form_label(form.email) }}
-                    {{ form_widget(form.email)}}
+                    {{ form_widget(form.email,{'value':last_username})}}
                     <div class="errors-form">
                         {{ form_errors(form.email) }}
                     </div>

@@ -24,6 +24,5 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
             )->setParameter('active',1)
             ->getQuery()
             ->getResult();
-
     }
 }

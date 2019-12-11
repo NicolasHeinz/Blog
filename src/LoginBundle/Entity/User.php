@@ -5,17 +5,18 @@ namespace LoginBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * users
  *
- * @ORM\Table(name="users")
+ * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="LoginBundle\Repository\usersRepository")
  * @UniqueEntity("email",message="Este Email ya esta en uso.")
  * @UniqueEntity("username",message="Este Nombre de Usuario ya esta en uso.")
  */
-class User
+class User implements UserInterface
 {
 
     /**
@@ -302,5 +303,29 @@ class User
     public function getRol()
     {
         return $this->rol;
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getRoles()
+    {
+        // TODO: Implement getRoles() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function getSalt()
+    {
+        // TODO: Implement getSalt() method.
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function eraseCredentials()
+    {
+        // TODO: Implement eraseCredentials() method.
     }
 }

@@ -37,3 +37,17 @@ services:
     app.transform_text:
         class: EntradaBundle\Services\ServiceEntrada
         public: true
+
+    LoginBundle\Controller\DefaultController:
+        public: true
+        bind:
+            $authenticationUtils: '@security.authentication_utils'
+
+
+    EntradaBundle\DataFixtures\:
+        resource: '../../src/EntradaBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']
+
+    LoginBundle\DataFixtures\:
+        resource: '../../src/LoginBundle/DataFixtures'
+        tags: ['doctrine.fixture.orm']

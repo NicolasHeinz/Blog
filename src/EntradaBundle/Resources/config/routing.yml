@@ -9,3 +9,28 @@ entrada_edit:
 entrada_delet:
     path: /delet
     defaults: { _controller: EntradaBundle:Default:deletEntrada}
+
+api:
+    path: /api/entradas
+    defaults: { _controller: EntradaBundle:Api:showEntradas}
+    methods:  GET
+
+api-get:
+    path: /api/entrada/{id}
+    defaults: { _controller: EntradaBundle:Api:showEntrada}
+    methods:  GET
+
+api-save:
+    path: /api/entrada
+    defaults: { _controller: EntradaBundle:Api:saveEntrada}
+    methods:  POST
+
+api-update:
+    path: /api/entrada/{id}
+    defaults: { _controller: EntradaBundle:Api:editEntrada}
+    methods:  PUT
+
+api-delete:
+    path: /api/entrada/{id}
+    defaults: { _controller: EntradaBundle:Api:deletEntrada}
+    methods:  DELETE

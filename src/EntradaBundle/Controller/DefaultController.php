@@ -52,7 +52,7 @@ class DefaultController extends Controller
 
         $serviceTransfor = $this->get('app.transform_text');
 
-        $path= substr($request->headers->get('referer'),-18,13);
+        $path= substr($request->headers->get('referer'),-13,13);
 
         $id_entrada = $request->request->get('_id_entrada');
 
@@ -76,14 +76,10 @@ class DefaultController extends Controller
         $em->flush();
 
         if($path == "profile/home/"){
-            return $this->redirectToRoute('home_profile',[
-                'id' =>  $request->request->get('_id')
-            ]);
+            return $this->redirectToRoute('home_profile');
         }
 
-        return $this->redirectToRoute('home_homepage',[
-            'id' =>  $request->request->get('_id')
-        ]);
+        return $this->redirectToRoute('home_homepage');
 
     }
 
@@ -99,6 +95,12 @@ class DefaultController extends Controller
         $em->flush();
 
         $this->addFlash('info', 'Registro borrado');
+
+        $path= substr($request->headers->get('referer'),-13,13);
+
+        if($path == "profile/home/"){
+            return $this->redirectToRoute('home_profile');
+        }
 
         return $this->redirectToRoute('home_homepage');
     }

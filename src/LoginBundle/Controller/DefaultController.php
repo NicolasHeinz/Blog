@@ -8,46 +8,27 @@ use LoginBundle\Repository\usersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\Session;
-use Symfony\Component\VarDumper\Cloner\Data;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request)
+    public function indexAction(Request $request,
+                                AuthenticationUtils $authenticationUtils)
     {
+        $error = $authenticationUtils->getLastAuthenticationError();
+
+        $lastUsername = $authenticationUtils->getLastUsername();
+
         $usuario = new User();
 
         $form = $this->createForm(usersType::class,$usuario);
 
-        $form->handleRequest($request);
-
-        if($form->isSubmitted()){
-
-            $usuario = $form->getData();
-
-            $repository = $this->getDoctrine()->getRepository(User::class);
-
-            $usuarioLogin = $repository->findOneBy([
-                'email' => $usuario->getEmail(),
-                'password' => $usuario->getPassword(),
-                'active' => true
-            ]);
-
-            if($usuarioLogin){
-
-                $session = new Session();
-
-                $session->clear();
-
-                $session->set('id',$usuarioLogin->getId());
-                $session->set('rol',$usuarioLogin->getRol());
-
-                return $this->redirectToRoute('home_homepage');
-            }
-
-        }
-
         return $this->render('@Login/Default/index.html.twig',[
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'last_username' => $lastUsername,
+                'error'         => $error,
             ]
         );
     }
@@ -108,7 +89,9 @@ class DefaultController extends Controller
 
            if($usuarioBuscado){
 
-              return $this->render('@Login\Recuperar\vercontrasena.html.twig',[
+              return $this->render(
+                  '@Login\Recuperar\vercontrasena.html.twig',
+                  [
                     'password' => $usuarioBuscado->getPassword()
                   ]
               );
@@ -120,5 +103,36 @@ class DefaultController extends Controller
                 'form' => $form->createView()
             ]
         );
+    }
+
+    public function loginAction(Request $request)
+    {
+        $usuario = $request->request->get('users');
+
+        if($usuario){
+
+            $repository = $this->getDoctrine()
+                ->getRepository(User::class);
+
+            $usuarioLogin = $repository->findOneBy([
+                'email' => $usuario['email'],
+                'password' => $usuario['password'],
+                'active' => true
+            ]);
+
+            if($usuarioLogin){
+
+                $session = new Session();
+
+                $session->clear();
+
+                $session->set('id',$usuarioLogin->getId());
+                $session->set('rol',$usuarioLogin->getRol());
+
+                return $this->redirectToRoute('home_homepage');
+            }
+
+            return $this->redirectToRoute('login');
+        }
     }
 }

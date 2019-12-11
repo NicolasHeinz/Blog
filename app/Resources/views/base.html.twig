@@ -21,27 +21,27 @@
 
                             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                                 <ul class="navbar-nav mr-auto">
-                                    <li class="nav-item active">
-                                        <a class="nav-link" href="{{ path('home_homepage')}}">Home <span class="sr-only">(current)</span></a>
+                                    <li class="nav-item">
+                                        <a class="nav-link active home" href="{{ path('home_homepage')}}">Home</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('profile',{id: app.session.get('id')}) }}">Perfil</a>
+                                        <a class="nav-link perfil" href="{{ path('profile',{id: app.session.get('id')}) }}">Perfil</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('home_profile')}}">Mis Posts</a>
+                                        <a class="nav-link miposts" href="{{ path('home_profile')}}">Mis Posts</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ path('entrada_homepage') }}">Crear Blog</a>
+                                        <a class="nav-link crearblog" href="{{ path('entrada_homepage') }}">Crear Blog</a>
                                     </li>
                                     {% if app.session.get('rol') == constant('LoginBundle\\Repository\\usersRepository::USER_ADMIN') %}
-                                        <li class="nav-item">
+                                        <li class="nav-item lista">
                                             <a class="nav-link" href="{{ path('list_user') }}">Listado de Usuarios</a>
                                         </li>
                                     {% endif %}
                                     <li class="nav-item">
                                         <a href="{{ path('logout') }}" class="nav-link">Salir</a>
                                     </li>
-                                </ul>
+
                             </div>
                         </nav>
                     </div>
@@ -55,5 +55,6 @@
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
             <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
         {% endblock %}
+        {% block scripts %}{% endblock %}
     </body>
 </html>

@@ -3,7 +3,7 @@ home_homepage:
     defaults: { _controller: HomeBundle:Default:index }
 
 profile:
-    path: /profile/
+    path: /profile
     defaults: { _controller: HomeBundle:Default:profile}
 
 home_profile:

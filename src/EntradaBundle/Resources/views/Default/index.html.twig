@@ -18,3 +18,12 @@
         </div>
     </div>
 {% endblock %}
+
+{% block scripts %}
+<script>
+    $(document).ready(function() {
+        $(".navbar-nav").find(".active").removeClass("active");
+        $(".crearblog").addClass("active");
+    });
+</script>
+{% endblock %}

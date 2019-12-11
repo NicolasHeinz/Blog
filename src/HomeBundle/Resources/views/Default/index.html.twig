@@ -12,12 +12,12 @@
                     <p class="card-text">
                         {{ e.cuerpo }}
                     </p>
-                    {% if (e.autor == id) or (isAdmin == constant('LoginBundle\\Repository\\usersRepository::USER_ADMIN')) %}
-                        <button  class="btn btn-success btn-editar" data-usuario="{{ id }}" data-entrada="{{ e.id }}" data-titulo="{{ e.titulo }}" data-cuerpo="{{ e.cuerpo }}"
+                    {% if (e.autor == app.session.get('id')) or (app.session.get('rol') == constant('LoginBundle\\Repository\\usersRepository::USER_ADMIN')) %}
+                        <button  class="btn btn-success btn-editar" data-usuario="{{ app.session.get('id') }}" data-entrada="{{ e.id }}" data-titulo="{{ e.titulo }}" data-cuerpo="{{ e.cuerpo }}"
                         data-toggle="modal" data-target="#modalEditar">
                         Editar</button>
 
-                        <button class="btn btn-danger btn-eliminar" data-usuario="{{ id }}" data-entrada="{{ e.id }}" data-toggle="modal" data-target="#modalEditar" >Eliminar</button>
+                        <button class="btn btn-danger btn-eliminar" data-usuario="{{ app.session.get('id') }}" data-entrada="{{ e.id }}" data-toggle="modal" data-target="#modalEditar" >Eliminar</button>
 
                     {% endif %}
                 </div>
@@ -52,24 +52,31 @@
     </div>
 
 {% endblock %}
-
-{% block javascripts %}
+{% block scripts %}
     <script>
         $(document).ready(function() {
 
+           /* $(".navbar-nav .nav-item").click(function () {
+                $(".navbar-nav").find(".active").removeClass("active");
+                $(this).addClass("active");
+            });*/
+
+            $(".navbar-nav").find(".active").removeClass("active");
+            $(".home").addClass("active");
+
             $(".btn-editar").click(function() {
 
-              $(".modal-title .badge").text("Editar Entrada");
-              $(".modal-body").empty();
-              $(".modal-body").append('{{ form_label(formEntrada.titulo) }}');
-              $(".modal-body").append('{{ form_widget(formEntrada.titulo) }}');
-              $(".modal-body").append('{{ form_label(formEntrada.cuerpo) }}');
-              $(".modal-body").append('{{ form_widget(formEntrada.cuerpo) }}');
-              $(".modal-body").append('<input type="hidden" id="id" name="_id_entrada" value="'+$(this).data('entrada')+'">');
-              $(".btn-ok").html('Guardar');
+                $(".modal-title .badge").text("Editar Entrada");
+                $(".modal-body").empty();
+                $(".modal-body").append('{{ form_label(formEntrada.titulo) }}');
+                $(".modal-body").append('{{ form_widget(formEntrada.titulo) }}');
+                $(".modal-body").append('{{ form_label(formEntrada.cuerpo) }}');
+                $(".modal-body").append('{{ form_widget(formEntrada.cuerpo) }}');
+                $(".modal-body").append('<input type="hidden" id="id" name="_id_entrada" value="'+$(this).data('entrada')+'">');
+                $(".btn-ok").html('Guardar');
 
-              $("#entradabundle_entrada_titulo").val($(this).data('titulo'));
-              $("#entradabundle_entrada_cuerpo").val($(this).data('cuerpo'));
+                $("#entradabundle_entrada_titulo").val($(this).data('titulo'));
+                $("#entradabundle_entrada_cuerpo").val($(this).data('cuerpo'));
 
             });
 

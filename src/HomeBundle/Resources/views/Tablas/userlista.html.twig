@@ -41,10 +41,12 @@
 
     <script>
         $(document).ready(function () {
-        var table = new KilikTable("{{ table.id }}", "{{ table.path }}", JSON.parse('{{ table.options | json_encode | raw }}'));
+            $(".navbar-nav").find(".active").removeClass("active");
+            $(".lista").addClass("active");
 
-        table.init();
+            var table = new KilikTable("{{ table.id }}", "{{ table.path }}", JSON.parse('{{ table.options | json_encode | raw }}'));
+
+            table.init();
         });
-
     </script>
 {% endblock %}

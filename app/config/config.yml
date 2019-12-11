@@ -19,7 +19,9 @@ framework:
         resource: '%kernel.project_dir%/app/config/routing.yml'
         strict_requirements: ~
     form: ~
-    csrf_protection: ~
+    csrf_protection: { enabled: true }
+    templating:
+        engines: ['twig']
     validation: { enable_annotations: true }
     #serializer: { enable_annotations: true }
     default_locale: '%locale%'
@@ -73,3 +75,11 @@ sensio_framework_extra:
    router:
         annotations: false
 
+
+# app/config/config.yml
+fos_oauth_server:
+    db_driver: orm       # Drivers available: orm, mongodb, or propel
+    client_class:         FOS\OAuthServerBundle\Entity\Client
+    access_token_class:   FOS\OAuthServerBundle\Entity\AccessToken
+    refresh_token_class:  FOS\OAuthServerBundle\Entity\RefreshToken
+    auth_code_class:      FOS\OAuthServerBundle\Entity\AuthCode
