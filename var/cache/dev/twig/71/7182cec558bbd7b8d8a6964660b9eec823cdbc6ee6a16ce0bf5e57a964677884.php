@@ -72,8 +72,9 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
             <div class=\"sm-12\">
                 ";
         // line 8
-        $this->loadTemplate("@Home/Tablas/userlista.html.twig", "@Home/Tablas/userlista.html.twig", 8, "340379802")->display(twig_array_merge($context, ["table" => (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 8, $this->source); })())]));
-        // line 28
+        $this->loadTemplate("@Home/Tablas/userlista.html.twig", "@Home/Tablas/userlista.html.twig", 8, "1678952097")->display(twig_array_merge($context, ["table" =>         // line 9
+(isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 9, $this->source); })())]));
+        // line 33
         echo "            </div>
         </div>
     </section>
@@ -87,7 +88,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
     }
 
-    // line 34
+    // line 39
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -97,31 +98,46 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 35
+        // line 40
         echo "    <link rel=\"icon\" type=\"image/x-icon\" href=\"";
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("favicon.ico"), "html", null, true);
         echo "\" />
-    <link rel=\"stylesheet\" type=\"text/css\"  href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\" />
-    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css\" integrity=\"sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r\" crossorigin=\"anonymous\">
-    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-2.2.0.min.js\"></script>
-    <script type=\"text/javascript\" src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>
-    <script type=\"text/javascript\" src=\"";
-        // line 40
+    <link rel=\"stylesheet\" type=\"text/css\"
+          href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\"
+    />
+    <link rel=\"stylesheet\"
+          href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css\"
+          integrity=\"sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r\"
+          crossorigin=\"anonymous\"
+    >
+    <script type=\"text/javascript\"
+            src=\"https://code.jquery.com/jquery-2.2.0.min.js\"
+    >
+    </script>
+    <script type=\"text/javascript\"
+            src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"
+    >
+    </script>
+    <script type=\"text/javascript\"
+            src=\"";
+        // line 58
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("/bundles/kiliktable/js/KilikTable.js"), "html", null, true);
-        echo "\"></script>
-
+        echo "\">
+    </script>
     <script>
         \$(document).ready(function () {
             \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
             \$(\".lista\").addClass(\"active\");
 
             var table = new KilikTable(\"";
-        // line 47
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 47, $this->source); })()), "id", [], "any", false, false, false, 47), "html", null, true);
+        // line 65
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 65, $this->source); })()), "id", [], "any", false, false, false, 65), "html", null, true);
         echo "\", \"";
-        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 47, $this->source); })()), "path", [], "any", false, false, false, 47), "html", null, true);
-        echo "\", JSON.parse('";
-        echo json_encode(twig_get_attribute($this->env, $this->source, (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 47, $this->source); })()), "options", [], "any", false, false, false, 47));
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 65, $this->source); })()), "path", [], "any", false, false, false, 65), "html", null, true);
+        echo "\",
+                JSON.parse('";
+        // line 66
+        echo json_encode(twig_get_attribute($this->env, $this->source, (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 66, $this->source); })()), "options", [], "any", false, false, false, 66));
         echo "'));
 
             table.init();
@@ -148,7 +164,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
     public function getDebugInfo()
     {
-        return array (  120 => 47,  110 => 40,  101 => 35,  91 => 34,  77 => 28,  75 => 8,  69 => 4,  59 => 3,  36 => 1,);
+        return array (  140 => 66,  134 => 65,  124 => 58,  102 => 40,  92 => 39,  78 => 33,  76 => 9,  75 => 8,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -160,11 +176,16 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
     <section class=\"container\">
         <div class=\"row\">
             <div class=\"sm-12\">
-                {% embed \"@Home/t/_defaultTable.html.twig\" with {\"table\": table} %}
+                {% embed \"@Home/t/_defaultTable.html.twig\"
+                    with {\"table\": table}
+                %}
                     {% block tableTitle %}
                         <b>Listado de Usuarios</b>
                         <div class=\"navbar navbar-right\">
-                            <a href=\"{{ path(\"home_homepage\") }}\"><span class=\"glyphicon glyphicon-home\"></span> Home</a>
+                            <a href=\"{{ path(\"home_homepage\") }}\">
+                                <span class=\"glyphicon glyphicon-home\"></span>
+                                Home
+                            </a>
                         </div>
                     {% endblock tableTitle %}
                     {# add a column to the left #}
@@ -188,18 +209,32 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
 {% block javascripts %}
     <link rel=\"icon\" type=\"image/x-icon\" href=\"{{ asset('favicon.ico') }}\" />
-    <link rel=\"stylesheet\" type=\"text/css\"  href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\" />
-    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css\" integrity=\"sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r\" crossorigin=\"anonymous\">
-    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-2.2.0.min.js\"></script>
-    <script type=\"text/javascript\" src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>
-    <script type=\"text/javascript\" src=\"{{ asset('/bundles/kiliktable/js/KilikTable.js') }}\"></script>
-
+    <link rel=\"stylesheet\" type=\"text/css\"
+          href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\"
+    />
+    <link rel=\"stylesheet\"
+          href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css\"
+          integrity=\"sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r\"
+          crossorigin=\"anonymous\"
+    >
+    <script type=\"text/javascript\"
+            src=\"https://code.jquery.com/jquery-2.2.0.min.js\"
+    >
+    </script>
+    <script type=\"text/javascript\"
+            src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"
+    >
+    </script>
+    <script type=\"text/javascript\"
+            src=\"{{ asset('/bundles/kiliktable/js/KilikTable.js') }}\">
+    </script>
     <script>
         \$(document).ready(function () {
             \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
             \$(\".lista\").addClass(\"active\");
 
-            var table = new KilikTable(\"{{ table.id }}\", \"{{ table.path }}\", JSON.parse('{{ table.options | json_encode | raw }}'));
+            var table = new KilikTable(\"{{ table.id }}\", \"{{ table.path }}\",
+                JSON.parse('{{ table.options | json_encode | raw }}'));
 
             table.init();
         });
@@ -210,7 +245,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
 
 /* @Home/Tablas/userlista.html.twig */
-class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902f8afa___340379802 extends \Twig\Template
+class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902f8afa___1678952097 extends \Twig\Template
 {
     private $source;
     private $macros = [];
@@ -254,7 +289,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
     }
 
-    // line 9
+    // line 11
     public function block_tableTitle($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -264,13 +299,16 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "tableTitle"));
 
-        // line 10
+        // line 12
         echo "                        <b>Listado de Usuarios</b>
                         <div class=\"navbar navbar-right\">
                             <a href=\"";
-        // line 12
+        // line 14
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("home_homepage");
-        echo "\"><span class=\"glyphicon glyphicon-home\"></span> Home</a>
+        echo "\">
+                                <span class=\"glyphicon glyphicon-home\"></span>
+                                Home
+                            </a>
                         </div>
                     ";
         
@@ -281,7 +319,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
     }
 
-    // line 16
+    // line 21
     public function block_tableHeadStdColumns($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -291,10 +329,10 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "tableHeadStdColumns"));
 
-        // line 17
+        // line 22
         echo "                        <th>&nbsp;</th>
                         ";
-        // line 18
+        // line 23
         $this->displayParentBlock("tableHeadStdColumns", $context, $blocks);
         echo "
                     ";
@@ -306,7 +344,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
     }
 
-    // line 20
+    // line 25
     public function block_tableHeadStdFilters($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -316,10 +354,10 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "tableHeadStdFilters"));
 
-        // line 21
+        // line 26
         echo "                        <td>&nbsp;</td>
                         ";
-        // line 22
+        // line 27
         $this->displayParentBlock("tableHeadStdFilters", $context, $blocks);
         echo "
                     ";
@@ -331,7 +369,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
     }
 
-    // line 24
+    // line 29
     public function block_tableBodyStdColumns($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -341,7 +379,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "tableBodyStdColumns"));
 
-        // line 25
+        // line 30
         echo "
                     ";
         
@@ -364,7 +402,7 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
     public function getDebugInfo()
     {
-        return array (  345 => 25,  335 => 24,  323 => 22,  320 => 21,  310 => 20,  298 => 18,  295 => 17,  285 => 16,  272 => 12,  268 => 10,  258 => 9,  235 => 8,  120 => 47,  110 => 40,  101 => 35,  91 => 34,  77 => 28,  75 => 8,  69 => 4,  59 => 3,  36 => 1,);
+        return array (  383 => 30,  373 => 29,  361 => 27,  358 => 26,  348 => 25,  336 => 23,  333 => 22,  323 => 21,  307 => 14,  303 => 12,  293 => 11,  270 => 8,  140 => 66,  134 => 65,  124 => 58,  102 => 40,  92 => 39,  78 => 33,  76 => 9,  75 => 8,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -376,11 +414,16 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
     <section class=\"container\">
         <div class=\"row\">
             <div class=\"sm-12\">
-                {% embed \"@Home/t/_defaultTable.html.twig\" with {\"table\": table} %}
+                {% embed \"@Home/t/_defaultTable.html.twig\"
+                    with {\"table\": table}
+                %}
                     {% block tableTitle %}
                         <b>Listado de Usuarios</b>
                         <div class=\"navbar navbar-right\">
-                            <a href=\"{{ path(\"home_homepage\") }}\"><span class=\"glyphicon glyphicon-home\"></span> Home</a>
+                            <a href=\"{{ path(\"home_homepage\") }}\">
+                                <span class=\"glyphicon glyphicon-home\"></span>
+                                Home
+                            </a>
                         </div>
                     {% endblock tableTitle %}
                     {# add a column to the left #}
@@ -404,18 +447,32 @@ class __TwigTemplate_525a896283def8f768c7b6f83af30d3766a50015ad18e59b6c429836902
 
 {% block javascripts %}
     <link rel=\"icon\" type=\"image/x-icon\" href=\"{{ asset('favicon.ico') }}\" />
-    <link rel=\"stylesheet\" type=\"text/css\"  href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\" />
-    <link rel=\"stylesheet\" href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css\" integrity=\"sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r\" crossorigin=\"anonymous\">
-    <script type=\"text/javascript\" src=\"https://code.jquery.com/jquery-2.2.0.min.js\"></script>
-    <script type=\"text/javascript\" src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"></script>
-    <script type=\"text/javascript\" src=\"{{ asset('/bundles/kiliktable/js/KilikTable.js') }}\"></script>
-
+    <link rel=\"stylesheet\" type=\"text/css\"
+          href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css\"
+    />
+    <link rel=\"stylesheet\"
+          href=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css\"
+          integrity=\"sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r\"
+          crossorigin=\"anonymous\"
+    >
+    <script type=\"text/javascript\"
+            src=\"https://code.jquery.com/jquery-2.2.0.min.js\"
+    >
+    </script>
+    <script type=\"text/javascript\"
+            src=\"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js\"
+    >
+    </script>
+    <script type=\"text/javascript\"
+            src=\"{{ asset('/bundles/kiliktable/js/KilikTable.js') }}\">
+    </script>
     <script>
         \$(document).ready(function () {
             \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
             \$(\".lista\").addClass(\"active\");
 
-            var table = new KilikTable(\"{{ table.id }}\", \"{{ table.path }}\", JSON.parse('{{ table.options | json_encode | raw }}'));
+            var table = new KilikTable(\"{{ table.id }}\", \"{{ table.path }}\",
+                JSON.parse('{{ table.options | json_encode | raw }}'));
 
             table.init();
         });

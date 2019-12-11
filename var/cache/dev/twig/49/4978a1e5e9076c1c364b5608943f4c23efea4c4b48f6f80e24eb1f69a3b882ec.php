@@ -80,43 +80,64 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
             echo "            <div class=\"card mt-3\">
                 <div class=\"card-body\">
                     <h5 class=\"card-tittle\">
-                        <h3><span class=\"badge badge-light card\">";
-            // line 10
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "titulo", [], "any", false, false, false, 10), "html", null, true);
-            echo "</span></h3>
+                        <h3>
+                            <span class=\"badge badge-light card\">
+                                ";
+            // line 12
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "titulo", [], "any", false, false, false, 12), "html", null, true);
+            echo "
+                            </span>
+                        </h3>
                     </h5>
                     <p class=\"card-text\">
                         ";
-            // line 13
-            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "cuerpo", [], "any", false, false, false, 13), "html", null, true);
+            // line 17
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "cuerpo", [], "any", false, false, false, 17), "html", null, true);
             echo "
                     </p>
                     ";
-            // line 15
-            if (((twig_get_attribute($this->env, $this->source, $context["e"], "autor", [], "any", false, false, false, 15) == twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "session", [], "any", false, false, false, 15), "get", [0 => "id"], "method", false, false, false, 15)) || (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 15, $this->source); })()), "session", [], "any", false, false, false, 15), "get", [0 => "rol"], "method", false, false, false, 15) == twig_constant("LoginBundle\\Repository\\usersRepository::USER_ADMIN")))) {
-                // line 16
-                echo "                        <button  class=\"btn btn-success btn-editar\" data-usuario=\"";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 16, $this->source); })()), "session", [], "any", false, false, false, 16), "get", [0 => "id"], "method", false, false, false, 16), "html", null, true);
-                echo "\" data-entrada=\"";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "id", [], "any", false, false, false, 16), "html", null, true);
-                echo "\" data-titulo=\"";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "titulo", [], "any", false, false, false, 16), "html", null, true);
-                echo "\" data-cuerpo=\"";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "cuerpo", [], "any", false, false, false, 16), "html", null, true);
+            // line 19
+            if (((twig_get_attribute($this->env, $this->source, $context["e"], "autor", [], "any", false, false, false, 19) == twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 19, $this->source); })()), "session", [], "any", false, false, false, 19), "get", [0 => "id"], "method", false, false, false, 19)) || (twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,             // line 20
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 20, $this->source); })()), "session", [], "any", false, false, false, 20), "get", [0 => "rol"], "method", false, false, false, 20) == twig_constant("LoginBundle\\Repository\\usersRepository::USER_ADMIN")))) {
+                // line 26
+                echo "                        <button class=\"btn btn-success btn-editar\"
+                                data-usuario=\"";
+                // line 27
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 27, $this->source); })()), "session", [], "any", false, false, false, 27), "get", [0 => "id"], "method", false, false, false, 27), "html", null, true);
                 echo "\"
-                        data-toggle=\"modal\" data-target=\"#modalEditar\">
-                        Editar</button>
+                                data-entrada=\"";
+                // line 28
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "id", [], "any", false, false, false, 28), "html", null, true);
+                echo "\"
+                                data-titulo=\"";
+                // line 29
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "titulo", [], "any", false, false, false, 29), "html", null, true);
+                echo "\"
+                                data-cuerpo=\"";
+                // line 30
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "cuerpo", [], "any", false, false, false, 30), "html", null, true);
+                echo "\"
+                                data-toggle=\"modal\" data-target=\"#modalEditar\">
+                            Editar
+                        </button>
 
-                        <button class=\"btn btn-danger btn-eliminar\" data-usuario=\"";
-                // line 20
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 20, $this->source); })()), "session", [], "any", false, false, false, 20), "get", [0 => "id"], "method", false, false, false, 20), "html", null, true);
-                echo "\" data-entrada=\"";
-                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "id", [], "any", false, false, false, 20), "html", null, true);
-                echo "\" data-toggle=\"modal\" data-target=\"#modalEditar\" >Eliminar</button>
+                        <button class=\"btn btn-danger btn-eliminar\"
+                                data-usuario=\"";
+                // line 36
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 36, $this->source); })()), "session", [], "any", false, false, false, 36), "get", [0 => "id"], "method", false, false, false, 36), "html", null, true);
+                echo "\"
+                                data-entrada=\"";
+                // line 37
+                echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->source, $context["e"], "id", [], "any", false, false, false, 37), "html", null, true);
+                echo "\"
+                                data-toggle=\"modal\"
+                                data-target=\"#modalEditar\">
+                            Eliminar
+                        </button>
 
                     ";
             }
-            // line 23
+            // line 44
             echo "                </div>
             </div>
         ";
@@ -124,32 +145,45 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_iterated'], $context['_key'], $context['e'], $context['_parent'], $context['loop']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 26
+        // line 47
         echo "    </div>
 
 
 
 
  <!-- Modal Editar/Eliminar-->
-    <div class=\"modal fade\" id=\"modalEditar\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
+    <div class=\"modal fade\" id=\"modalEditar\" tabindex=\"-1\" role=\"dialog\"
+         aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
         <div class=\"modal-dialog\" role=\"document\">
             <div class=\"modal-content\">
                 <div class=\"modal-header\">
-                    <h4 class=\"modal-title\" id=\"exampleModalLabel\"><span class=\"badge badge-light\">Editar Entrada</span></h4>
-                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                    <h4 class=\"modal-title\" id=\"exampleModalLabel\">
+                        <span class=\"badge badge-light\">Editar Entrada</span>
+                    </h4>
+                    <button type=\"button\" class=\"close\"
+                            data-dismiss=\"modal\"
+                            aria-label=\"Close\">
                         <span aria-hidden=\"true\">&times;</span>
                     </button>
                 </div>
                 <form action=\"";
-        // line 41
+        // line 67
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("entrada_edit");
-        echo "\" method=\"post\" id=\"form-entrada\">
-                    <div class=\"modal-body\">
+        echo "\"
+                      method=\"post\"
+                      id=\"form-entrada\">
 
-                    </div>
+                    <div class=\"modal-body\"></div>
                     <div class=\"modal-footer\">
-                        <button type=\"submit\" class=\"btn btn-success btn-ok\">Guardar</button>
-                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Salir</button>
+                        <button type=\"submit\"
+                                class=\"btn btn-success btn-ok\">
+                            Guardar
+                        </button>
+                        <button type=\"button\"
+                                class=\"btn btn-secondary\"
+                                data-dismiss=\"modal\">
+                            Salir
+                        </button>
                     </div>
                 </form>
             </div>
@@ -165,7 +199,7 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
 
     }
 
-    // line 55
+    // line 89
     public function block_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -175,14 +209,9 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "scripts"));
 
-        // line 56
+        // line 90
         echo "    <script>
         \$(document).ready(function() {
-
-           /* \$(\".navbar-nav .nav-item\").click(function () {
-                \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
-                \$(this).addClass(\"active\");
-            });*/
 
             \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
             \$(\".home\").addClass(\"active\");
@@ -192,22 +221,25 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
                 \$(\".modal-title .badge\").text(\"Editar Entrada\");
                 \$(\".modal-body\").empty();
                 \$(\".modal-body\").append('";
-        // line 71
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 71, $this->source); })()), "titulo", [], "any", false, false, false, 71), 'label');
+        // line 100
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 100, $this->source); })()), "titulo", [], "any", false, false, false, 100), 'label');
         echo "');
                 \$(\".modal-body\").append('";
-        // line 72
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 72, $this->source); })()), "titulo", [], "any", false, false, false, 72), 'widget');
+        // line 101
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 101, $this->source); })()), "titulo", [], "any", false, false, false, 101), 'widget');
         echo "');
                 \$(\".modal-body\").append('";
-        // line 73
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 73, $this->source); })()), "cuerpo", [], "any", false, false, false, 73), 'label');
+        // line 102
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 102, $this->source); })()), "cuerpo", [], "any", false, false, false, 102), 'label');
         echo "');
                 \$(\".modal-body\").append('";
-        // line 74
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 74, $this->source); })()), "cuerpo", [], "any", false, false, false, 74), 'widget');
+        // line 103
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["formEntrada"]) || array_key_exists("formEntrada", $context) ? $context["formEntrada"] : (function () { throw new RuntimeError('Variable "formEntrada" does not exist.', 103, $this->source); })()), "cuerpo", [], "any", false, false, false, 103), 'widget');
         echo "');
-                \$(\".modal-body\").append('<input type=\"hidden\" id=\"id\" name=\"_id_entrada\" value=\"'+\$(this).data('entrada')+'\">');
+                \$(\".modal-body\").append(
+                    '<input type=\"hidden\" id=\"id\" name=\"_id_entrada\" ' +
+                    'value=\"'+\$(this).data('entrada')+'\">'
+                );
                 \$(\".btn-ok\").html('Guardar');
 
                 \$(\"#entradabundle_entrada_titulo\").val(\$(this).data('titulo'));
@@ -220,8 +252,13 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
                 \$(\"#form-entrada\").attr('action','/delet');
                 \$(\".modal-title .badge\").text(\"Eliminar Entrada\");
                 \$(\".modal-body\").empty();
-                \$(\".modal-body\").append(\"<p> ¿Esta Seguro de Eliminar Esta Entrada?</p>\");
-                \$(\".modal-body\").append(\"<input type=\\\"hidden\\\" id=\\\"id_eliminar\\\" name=\\\"_id-eliminar\\\">\");
+                \$(\".modal-body\").append(
+                    '<p> ¿Esta Seguro de Eliminar Esta Entrada?</p>'
+                );
+                \$(\".modal-body\").append(
+                    '<input type=\\\"hidden\\\" id=\\\"id_eliminar\\\" ' +
+                    'name=\\\"_id-eliminar\\\">'
+                );
 
                 \$(\".btn-ok\").html('Confirmar');
 
@@ -250,7 +287,7 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
 
     public function getDebugInfo()
     {
-        return array (  208 => 74,  204 => 73,  200 => 72,  196 => 71,  179 => 56,  169 => 55,  145 => 41,  128 => 26,  120 => 23,  112 => 20,  98 => 16,  96 => 15,  91 => 13,  85 => 10,  80 => 7,  76 => 6,  72 => 5,  69 => 4,  59 => 3,  36 => 1,);
+        return array (  237 => 103,  233 => 102,  229 => 101,  225 => 100,  213 => 90,  203 => 89,  171 => 67,  149 => 47,  141 => 44,  131 => 37,  127 => 36,  118 => 30,  114 => 29,  110 => 28,  106 => 27,  103 => 26,  101 => 20,  100 => 19,  95 => 17,  87 => 12,  80 => 7,  76 => 6,  72 => 5,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -264,17 +301,38 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
             <div class=\"card mt-3\">
                 <div class=\"card-body\">
                     <h5 class=\"card-tittle\">
-                        <h3><span class=\"badge badge-light card\">{{ e.titulo }}</span></h3>
+                        <h3>
+                            <span class=\"badge badge-light card\">
+                                {{ e.titulo }}
+                            </span>
+                        </h3>
                     </h5>
                     <p class=\"card-text\">
                         {{ e.cuerpo }}
                     </p>
-                    {% if (e.autor == app.session.get('id')) or (app.session.get('rol') == constant('LoginBundle\\\\Repository\\\\usersRepository::USER_ADMIN')) %}
-                        <button  class=\"btn btn-success btn-editar\" data-usuario=\"{{ app.session.get('id') }}\" data-entrada=\"{{ e.id }}\" data-titulo=\"{{ e.titulo }}\" data-cuerpo=\"{{ e.cuerpo }}\"
-                        data-toggle=\"modal\" data-target=\"#modalEditar\">
-                        Editar</button>
+                    {% if (e.autor == app.session.get('id')) or
+                        (   app.session.get('rol') ==
+                            constant(
+                        'LoginBundle\\\\Repository\\\\usersRepository::USER_ADMIN'
+                        )
+                        )
+                    %}
+                        <button class=\"btn btn-success btn-editar\"
+                                data-usuario=\"{{ app.session.get('id') }}\"
+                                data-entrada=\"{{ e.id }}\"
+                                data-titulo=\"{{ e.titulo }}\"
+                                data-cuerpo=\"{{ e.cuerpo }}\"
+                                data-toggle=\"modal\" data-target=\"#modalEditar\">
+                            Editar
+                        </button>
 
-                        <button class=\"btn btn-danger btn-eliminar\" data-usuario=\"{{ app.session.get('id') }}\" data-entrada=\"{{ e.id }}\" data-toggle=\"modal\" data-target=\"#modalEditar\" >Eliminar</button>
+                        <button class=\"btn btn-danger btn-eliminar\"
+                                data-usuario=\"{{ app.session.get('id') }}\"
+                                data-entrada=\"{{ e.id }}\"
+                                data-toggle=\"modal\"
+                                data-target=\"#modalEditar\">
+                            Eliminar
+                        </button>
 
                     {% endif %}
                 </div>
@@ -286,22 +344,35 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
 
 
  <!-- Modal Editar/Eliminar-->
-    <div class=\"modal fade\" id=\"modalEditar\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
+    <div class=\"modal fade\" id=\"modalEditar\" tabindex=\"-1\" role=\"dialog\"
+         aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
         <div class=\"modal-dialog\" role=\"document\">
             <div class=\"modal-content\">
                 <div class=\"modal-header\">
-                    <h4 class=\"modal-title\" id=\"exampleModalLabel\"><span class=\"badge badge-light\">Editar Entrada</span></h4>
-                    <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
+                    <h4 class=\"modal-title\" id=\"exampleModalLabel\">
+                        <span class=\"badge badge-light\">Editar Entrada</span>
+                    </h4>
+                    <button type=\"button\" class=\"close\"
+                            data-dismiss=\"modal\"
+                            aria-label=\"Close\">
                         <span aria-hidden=\"true\">&times;</span>
                     </button>
                 </div>
-                <form action=\"{{ path('entrada_edit') }}\" method=\"post\" id=\"form-entrada\">
-                    <div class=\"modal-body\">
+                <form action=\"{{ path('entrada_edit') }}\"
+                      method=\"post\"
+                      id=\"form-entrada\">
 
-                    </div>
+                    <div class=\"modal-body\"></div>
                     <div class=\"modal-footer\">
-                        <button type=\"submit\" class=\"btn btn-success btn-ok\">Guardar</button>
-                        <button type=\"button\" class=\"btn btn-secondary\" data-dismiss=\"modal\">Salir</button>
+                        <button type=\"submit\"
+                                class=\"btn btn-success btn-ok\">
+                            Guardar
+                        </button>
+                        <button type=\"button\"
+                                class=\"btn btn-secondary\"
+                                data-dismiss=\"modal\">
+                            Salir
+                        </button>
                     </div>
                 </form>
             </div>
@@ -312,11 +383,6 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
 {% block scripts %}
     <script>
         \$(document).ready(function() {
-
-           /* \$(\".navbar-nav .nav-item\").click(function () {
-                \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
-                \$(this).addClass(\"active\");
-            });*/
 
             \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
             \$(\".home\").addClass(\"active\");
@@ -329,7 +395,10 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
                 \$(\".modal-body\").append('{{ form_widget(formEntrada.titulo) }}');
                 \$(\".modal-body\").append('{{ form_label(formEntrada.cuerpo) }}');
                 \$(\".modal-body\").append('{{ form_widget(formEntrada.cuerpo) }}');
-                \$(\".modal-body\").append('<input type=\"hidden\" id=\"id\" name=\"_id_entrada\" value=\"'+\$(this).data('entrada')+'\">');
+                \$(\".modal-body\").append(
+                    '<input type=\"hidden\" id=\"id\" name=\"_id_entrada\" ' +
+                    'value=\"'+\$(this).data('entrada')+'\">'
+                );
                 \$(\".btn-ok\").html('Guardar');
 
                 \$(\"#entradabundle_entrada_titulo\").val(\$(this).data('titulo'));
@@ -342,8 +411,13 @@ class __TwigTemplate_d0fb5389025ff4d954a6adeb7fba8051ca714757ffe0d834507a7066207
                 \$(\"#form-entrada\").attr('action','/delet');
                 \$(\".modal-title .badge\").text(\"Eliminar Entrada\");
                 \$(\".modal-body\").empty();
-                \$(\".modal-body\").append(\"<p> ¿Esta Seguro de Eliminar Esta Entrada?</p>\");
-                \$(\".modal-body\").append(\"<input type=\\\"hidden\\\" id=\\\"id_eliminar\\\" name=\\\"_id-eliminar\\\">\");
+                \$(\".modal-body\").append(
+                    '<p> ¿Esta Seguro de Eliminar Esta Entrada?</p>'
+                );
+                \$(\".modal-body\").append(
+                    '<input type=\\\"hidden\\\" id=\\\"id_eliminar\\\" ' +
+                    'name=\\\"_id-eliminar\\\">'
+                );
 
                 \$(\".btn-ok\").html('Confirmar');
 

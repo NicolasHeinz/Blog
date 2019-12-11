@@ -18,8 +18,9 @@
                     </p>
                     {% if (e.autor == app.session.get('id')) or
                         (   app.session.get('rol') ==
-                            constant('LoginBundle\\Repository\\usersRepository::
-                            USER_ADMIN')
+                            constant(
+                        'LoginBundle\\Repository\\usersRepository::USER_ADMIN'
+                        )
                         )
                     %}
                         <button class="btn btn-success btn-editar"

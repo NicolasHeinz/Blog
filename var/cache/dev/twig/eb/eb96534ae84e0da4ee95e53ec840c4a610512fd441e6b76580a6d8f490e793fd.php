@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* LoginBundle:Recuperar:recuperar.html.twig */
+/* @Login\Recuperar\recuperar.html.twig */
 class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f79085145 extends \Twig\Template
 {
     private $source;
@@ -40,12 +40,12 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
     {
         $macros = $this->macros;
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "LoginBundle:Recuperar:recuperar.html.twig"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@Login\\Recuperar\\recuperar.html.twig"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "LoginBundle:Recuperar:recuperar.html.twig"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@Login\\Recuperar\\recuperar.html.twig"));
 
-        $this->parent = $this->loadTemplate("base.html.twig", "LoginBundle:Recuperar:recuperar.html.twig", 1);
+        $this->parent = $this->loadTemplate("base.html.twig", "@Login\\Recuperar\\recuperar.html.twig", 1);
         $this->parent->display($context, array_merge($this->blocks, $blocks));
         
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->leave($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof);
@@ -109,7 +109,9 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
         echo "
                         </div>
                     </div>
-                   <button class=\"btn btn-success\">Recuperar Contraseña</button>
+                   <button class=\"btn btn-success\">
+                       Recuperar Contraseña
+                   </button>
                 </form>
             </div>
         </div>
@@ -125,7 +127,7 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
 
     public function getTemplateName()
     {
-        return "LoginBundle:Recuperar:recuperar.html.twig";
+        return "@Login\\Recuperar\\recuperar.html.twig";
     }
 
     public function isTraitable()
@@ -157,11 +159,13 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
                             {{ form_errors(form.email) }}
                         </div>
                     </div>
-                   <button class=\"btn btn-success\">Recuperar Contraseña</button>
+                   <button class=\"btn btn-success\">
+                       Recuperar Contraseña
+                   </button>
                 </form>
             </div>
         </div>
     </div>
-{% endblock %}", "LoginBundle:Recuperar:recuperar.html.twig", "/home/nicolas/Documentos/Blog/src/LoginBundle/Resources/views/Recuperar/recuperar.html.twig");
+{% endblock %}", "@Login\\Recuperar\\recuperar.html.twig", "/home/nicolas/Documentos/Blog/src/LoginBundle/Resources/views/Recuperar/recuperar.html.twig");
     }
 }

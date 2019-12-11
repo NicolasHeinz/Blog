@@ -11,8 +11,9 @@
                 <input type="hidden" name="id" id="id" value="{{ user.id }}">
 
                 {% if app.session.get('rol') ==
-                    constant('LoginBundle\\Repository\\usersRepository::
-                    USER_ADMIN')
+                    constant(
+                    'LoginBundle\\Repository\\usersRepository::USER_ADMIN'
+                    )
                 %}
 
                 <div class="form-group">
@@ -35,14 +36,18 @@
                             name="_select_active">
                         {% for a in status %}
                             {% if (user.active == 1) and
-                                (a == constant('LoginBundle\\Repository\\
-                                usersRepository::USER_ALTA')
+                                (a ==
+                                constant(
+                                'LoginBundle\\Repository\\usersRepository::USER_ALTA'
+                                )
                                 )
                             %}
                                 <option selected>{{ a }}</option>
                             {% elseif (user.active == 0) and
-                                (a == constant('LoginBundle\\Repository\\
-                                usersRepository::USER_BAJA')
+                                (a ==
+                                constant(
+                                'LoginBundle\\Repository\\usersRepository::USER_BAJA'
+                                )
                                 )
                             %}
                                 <option selected>{{ a }}</option>

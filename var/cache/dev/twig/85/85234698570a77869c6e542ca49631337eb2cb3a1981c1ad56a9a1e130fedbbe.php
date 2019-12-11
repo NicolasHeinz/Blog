@@ -69,29 +69,33 @@ class __TwigTemplate_5aa56e1e396997028af2b5a6434218b5a7ab8dacd16c95003be9232b8a9
         echo "
     <div class=\"col-md-8 offset-md-2 mt-5 card\">
         <div class=\"col-md-12 mt-4\">
-            <h1 class=\"text-center\"><span class=\"badge badge-primary\">Nuevo Blog</span></h1>
+            <h1 class=\"text-center\">
+                <span class=\"badge badge-primary\">Nuevo Blog</span>
+            </h1>
            <form action=\"";
-        // line 8
+        // line 10
         echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("entrada_homepage");
         echo "\" method=\"post\">
                ";
-        // line 9
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 9, $this->source); })()), "titulo", [], "any", false, false, false, 9), 'label');
-        echo "
-               ";
-        // line 10
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 10, $this->source); })()), "titulo", [], "any", false, false, false, 10), 'widget');
-        echo "
-               ";
         // line 11
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 11, $this->source); })()), "cuerpo", [], "any", false, false, false, 11), 'label');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 11, $this->source); })()), "titulo", [], "any", false, false, false, 11), 'label');
         echo "
                ";
         // line 12
-        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), "cuerpo", [], "any", false, false, false, 12), 'widget');
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), "titulo", [], "any", false, false, false, 12), 'widget');
+        echo "
+               ";
+        // line 13
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 13, $this->source); })()), "cuerpo", [], "any", false, false, false, 13), 'label');
+        echo "
+               ";
+        // line 14
+        echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 14, $this->source); })()), "cuerpo", [], "any", false, false, false, 14), 'widget');
         echo "
                <div class=\"col-md-12 text-center mt-4 mb-4\">
-                   <button type=\"submit\" class=\"btn btn-success\">Guardar</button>
+                   <button type=\"submit\" class=\"btn btn-success\">
+                       Guardar
+                   </button>
                </div>
            </form>
 
@@ -106,7 +110,7 @@ class __TwigTemplate_5aa56e1e396997028af2b5a6434218b5a7ab8dacd16c95003be9232b8a9
 
     }
 
-    // line 22
+    // line 26
     public function block_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -116,7 +120,7 @@ class __TwigTemplate_5aa56e1e396997028af2b5a6434218b5a7ab8dacd16c95003be9232b8a9
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "scripts"));
 
-        // line 23
+        // line 27
         echo "<script>
     \$(document).ready(function() {
         \$(\".navbar-nav\").find(\".active\").removeClass(\"active\");
@@ -144,7 +148,7 @@ class __TwigTemplate_5aa56e1e396997028af2b5a6434218b5a7ab8dacd16c95003be9232b8a9
 
     public function getDebugInfo()
     {
-        return array (  120 => 23,  110 => 22,  91 => 12,  87 => 11,  83 => 10,  79 => 9,  75 => 8,  69 => 4,  59 => 3,  36 => 1,);
+        return array (  124 => 27,  114 => 26,  93 => 14,  89 => 13,  85 => 12,  81 => 11,  77 => 10,  69 => 4,  59 => 3,  36 => 1,);
     }
 
     public function getSourceContext()
@@ -155,14 +159,18 @@ class __TwigTemplate_5aa56e1e396997028af2b5a6434218b5a7ab8dacd16c95003be9232b8a9
 
     <div class=\"col-md-8 offset-md-2 mt-5 card\">
         <div class=\"col-md-12 mt-4\">
-            <h1 class=\"text-center\"><span class=\"badge badge-primary\">Nuevo Blog</span></h1>
+            <h1 class=\"text-center\">
+                <span class=\"badge badge-primary\">Nuevo Blog</span>
+            </h1>
            <form action=\"{{ path('entrada_homepage') }}\" method=\"post\">
                {{ form_label(form.titulo) }}
                {{ form_widget(form.titulo) }}
                {{ form_label(form.cuerpo) }}
                {{ form_widget(form.cuerpo) }}
                <div class=\"col-md-12 text-center mt-4 mb-4\">
-                   <button type=\"submit\" class=\"btn btn-success\">Guardar</button>
+                   <button type=\"submit\" class=\"btn btn-success\">
+                       Guardar
+                   </button>
                </div>
            </form>
 
