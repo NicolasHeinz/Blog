@@ -5,13 +5,17 @@
 
     <div class="col-md-4 offset-md-4 alto card">
         {% if error %}
-            <div class="alert alert-danger mt-3">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger mt-3">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
         {% endif %}
 
 
         <form action="{{ path('log-in') }}" method="post">
 
-            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}" />
+            <input type="hidden" name="_csrf_token"
+                   value="{{ csrf_token('authenticate') }}"
+            />
             <div class="col-md-12  mt-3">
                 <div class="form-group mt-4">
                     {{ form_label(form.email) }}
@@ -29,10 +33,17 @@
                 </div>
                 <div class="form-group text-center">
                     <div class="mt-5">
-                        <a class="btn btn-primary" href="{{ path('registro') }}">Registrate</a>
-                        <button class="btn btn-success" type="submit">Iniciar Sesion</button>
+                        <a class="btn btn-primary"
+                           href="{{ path('registro') }}">Registrate
+                        </a>
+                        <button class="btn btn-success" type="submit">
+                            Iniciar Sesion
+                        </button>
                         <div class="mt-5">
-                            <b>¿Olvidaste tu Contraseña?</b> <a href="{{ path("recuperar_password") }}">Click Aqui!</a>
+                            <b>¿Olvidaste tu Contraseña?</b>
+                            <a href="{{ path("recuperar_password") }}">
+                                Click Aqui!
+                            </a>
                         </div>
                     </div>
                 </div>

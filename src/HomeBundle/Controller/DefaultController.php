@@ -95,7 +95,6 @@ class DefaultController extends Controller
             $user->setPassword($usuarioDatos->getPassword());
             $user->setUsername($usuarioDatos->getUsername());
 
-
             if($request->getSession()->get('rol') ==
                 usersRepository::USER_ADMIN){
 
@@ -145,11 +144,13 @@ class DefaultController extends Controller
 
         $entrada  = new Entrada();
 
-        $formEntradaProfile = $this->createForm(EntradaType::class,$entrada);
+        $formEntradaProfile =
+            $this->createForm(EntradaType::class,$entrada);
 
         $formEntradaProfile->handleRequest($request);
 
-        if($formEntradaProfile->isSubmitted() && $formEntradaProfile->isValid()){
+        if($formEntradaProfile->isSubmitted() &&
+            $formEntradaProfile->isValid()  ){
 
             $serviceTransfor = $this->get('app.transform_text');
 

@@ -1,19 +1,19 @@
 registro:
-    path:     /registro/
-    defaults: { _controller: LoginBundle:Default:registro }
+    path:   /registro/
+    defaults:   { _controller: LoginBundle:Default:registro }
 
 login:
-    path:     /
-    defaults: { _controller: LoginBundle:Default:index }
+    path:   /
+    defaults:   { _controller: LoginBundle:Default:index }
 
 logout:
-    path: /salir
-    defaults: { _controller: LoginBundle:Default:logout}
+    path:   /salir
+    defaults:   { _controller: LoginBundle:Default:logout}
 
 recuperar_password:
-    path: /recuperar
-    defaults: { _controller: LoginBundle:Default:recuperar}
+    path:   /recuperar
+    defaults:   { _controller: LoginBundle:Default:recuperar}
 
 log-in:
-    path: /login
-    defaults: { _controller: LoginBundle:Default:login}
+    path:   /login
+    defaults:   { _controller: LoginBundle:Default:login}

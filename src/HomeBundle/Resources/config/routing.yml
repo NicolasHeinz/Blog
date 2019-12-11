@@ -1,21 +1,21 @@
 home_homepage:
-    path:     /home
+    path:   /home
     defaults: { _controller: HomeBundle:Default:index }
 
 profile:
-    path: /profile
+    path:   /profile
     defaults: { _controller: HomeBundle:Default:profile}
 
 home_profile:
-    path: /profile/home/
+    path:   /profile/home/
     defaults: { _controller: HomeBundle:Default:profileHome}
 
 list_user_ajax:
-    path: /list/ajax
+    path:   /list/ajax
     defaults: { _controller: HomeBundle:Default:ajaxListUser}
 
 list_user:
-    path: /list
+    path:   /list
     defaults: { _controller: HomeBundle:Default:list}
 
 

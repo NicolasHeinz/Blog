@@ -59,6 +59,7 @@ class DefaultController extends Controller
         $titulo = $serviceTransfor->TransformText(
             $request->request->get('entradabundle_entrada')['titulo']
         );
+
         $cuerpo =$serviceTransfor->TransformText(
             $request->request->get('entradabundle_entrada')['cuerpo']
         );
@@ -89,7 +90,7 @@ class DefaultController extends Controller
 
         $em = $this->getDoctrine()->getManager();
         $entradaPorEliminar = $em->getRepository(Entrada::class)
-            ->find($id_entrada);
+                                ->find($id_entrada);
 
         $em->remove($entradaPorEliminar);
         $em->flush();

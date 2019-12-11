@@ -5,13 +5,20 @@
         <div class="col-md-12 mt-4">
             <form action="{{ path("profile") }}" method="post">
 
-                <h1 class="text-center"><span class="badge badge-primary">Perfil</span></h1>
+                <h1 class="text-center">
+                    <span class="badge badge-primary">Perfil</span>
+                </h1>
                 <input type="hidden" name="id" id="id" value="{{ user.id }}">
 
-                {% if app.session.get('rol') == constant('LoginBundle\\Repository\\usersRepository::USER_ADMIN') %}
+                {% if app.session.get('rol') ==
+                    constant('LoginBundle\\Repository\\usersRepository::
+                    USER_ADMIN')
+                %}
 
                 <div class="form-group">
-                    <select class="form-control" id="select_rol" name="_select_rol">
+                    <select class="form-control"
+                            id="select_rol"
+                            name="_select_rol">
                         {% for r in roles %}
                             {% if user.rol == r %}
                                 <option selected>{{ r }}</option>
@@ -23,11 +30,21 @@
                 </div>
 
                 <div class="form-group">
-                    <select class="form-control" id="select_active" name="_select_active">
+                    <select class="form-control"
+                            id="select_active"
+                            name="_select_active">
                         {% for a in status %}
-                            {% if (user.active == 1) and (a == constant('LoginBundle\\Repository\\usersRepository::USER_ALTA')) %}
+                            {% if (user.active == 1) and
+                                (a == constant('LoginBundle\\Repository\\
+                                usersRepository::USER_ALTA')
+                                )
+                            %}
                                 <option selected>{{ a }}</option>
-                            {% elseif (user.active == 0) and (a == constant('LoginBundle\\Repository\\usersRepository::USER_BAJA')) %}
+                            {% elseif (user.active == 0) and
+                                (a == constant('LoginBundle\\Repository\\
+                                usersRepository::USER_BAJA')
+                                )
+                            %}
                                 <option selected>{{ a }}</option>
                             {% else %}
                                 <option> {{ a }}</option>
@@ -36,7 +53,6 @@
                     </select>
                 </div>
                 {% endif %}
-
 
                 {{ form_label(form.name) }}
                 {{ form_widget(form.name,{'value':user.name}) }}
@@ -54,7 +70,9 @@
                 {{ form_widget(form.username,{'value':user.username}) }}
 
                 <div class="col-md-12 text-center mt-3 mb-3">
-                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary">
+                        Guardar
+                    </button>
                 </div>
             </form>
         </div>

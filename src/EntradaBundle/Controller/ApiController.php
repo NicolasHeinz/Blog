@@ -11,7 +11,6 @@ use Symfony\Component\HttpFoundation\Response;
 
 use EntradaBundle\Entity\Entrada;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 /**
@@ -50,7 +49,8 @@ class ApiController extends Controller
         throw new BadRequestHttpException(
             'No ahi Pots.',
             null,
-            400);
+            400
+        );
     }
 
     public function showEntradaAction($id)
@@ -84,8 +84,8 @@ class ApiController extends Controller
     {
         if( ($request->get('autor') != null) &&
             ($request->get('titulo') != null) &&
-            ($request->get('cuerpo') != null)
-        ){
+            ($request->get('cuerpo') != null) ){
+
             $entrada = new Entrada();
 
             $entrada->setAutor($request->get('autor'));
