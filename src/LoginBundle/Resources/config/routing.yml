@@ -17,3 +17,8 @@ recuperar_password:
 log-in:
     path:   /login
     defaults:   { _controller: LoginBundle:Default:login}
+
+api-token:
+    path:   /token/get
+    defaults:   { _controller: LoginBundle:Token:generateToken}
+    methods:    POST

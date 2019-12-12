@@ -24,7 +24,13 @@ security:
             pattern:    ^/api
             fos_oauth:  true
             stateless:  true
-            anonymous:  false # can be omitted as its default value
+            anonymous:  false
+
+        token:
+            pattern:    ^/token
+            fos_oauth:  true
+            stateless:  true
+            anonymous:  true
 
         main:
             anonymous: ~
@@ -37,6 +43,7 @@ security:
 
     access_control:
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+        - { path: ^/token, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/home, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/profile, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/list, roles:  IS_AUTHENTICATED_ANONYMOUSLY }

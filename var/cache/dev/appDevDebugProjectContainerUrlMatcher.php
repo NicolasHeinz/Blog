@@ -271,6 +271,18 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'LoginBundle\\Controller\\DefaultController::logoutAction',  '_route' => 'logout',);
         }
 
+        // api-token
+        if ('/token/get' === $pathinfo) {
+            $ret = array (  '_controller' => 'LoginBundle\\Controller\\TokenController::generateTokenAction',  '_route' => 'api-token',);
+            if (!in_array($requestMethod, ['POST'])) {
+                $allow = array_merge($allow, ['POST']);
+                goto not_apitoken;
+            }
+
+            return $ret;
+        }
+        not_apitoken:
+
         // homepage
         if ('' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'AppBundle\\Controller\\DefaultController::indexAction',  '_route' => 'homepage',);
