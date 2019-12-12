@@ -43,7 +43,6 @@ services:
         bind:
             $authenticationUtils: '@security.authentication_utils'
 
-
     EntradaBundle\DataFixtures\:
         resource: '../../src/EntradaBundle/DataFixtures'
         tags: ['doctrine.fixture.orm']

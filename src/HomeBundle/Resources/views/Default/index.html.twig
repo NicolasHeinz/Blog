@@ -2,7 +2,7 @@
 
 {% block content %}
     <div class="col-md-6 offset-md-3 text-center">
-       <!--{{ app.session.get('id') }}-->
+
         {% for e in entradas %}
             <div class="card mt-3">
                 <div class="card-body">
@@ -16,15 +16,14 @@
                     <p class="card-text">
                         {{ e.cuerpo }}
                     </p>
-                    {% if (e.autor == app.session.get('id')) or
-                        (   app.session.get('rol') ==
+                    {% if (e.userid == app.session.get('user').id) or
+                        (   app.session.get('user').rol ==
                             constant(
                         'LoginBundle\\Repository\\usersRepository::USER_ADMIN'
                         )
                         )
                     %}
                         <button class="btn btn-success btn-editar"
-                                data-usuario="{{ app.session.get('id') }}"
                                 data-entrada="{{ e.id }}"
                                 data-titulo="{{ e.titulo }}"
                                 data-cuerpo="{{ e.cuerpo }}"
@@ -34,21 +33,16 @@
                         </button>
 
                         <button class="btn btn-danger btn-eliminar"
-                                data-usuario="{{ app.session.get('id') }}"
                                 data-entrada="{{ e.id }}"
                                 data-toggle="modal"
                                 data-target="#modalEditar">
                             Eliminar
                         </button>
-
                     {% endif %}
                 </div>
             </div>
         {% endfor %}
     </div>
-
-
-
 
  <!-- Modal Editar/Eliminar-->
     <div class="modal fade" id="modalEditar" tabindex="-1" role="dialog"
@@ -66,8 +60,8 @@
                     </button>
                 </div>
                 <form action="{{ path('entrada_edit') }}"
-                      method="post"
-                      id="form-entrada">
+                      id="form-entrada"
+                      method="post">
 
                     <div class="modal-body"></div>
                     <div class="modal-footer">

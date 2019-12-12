@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
@@ -19,8 +18,10 @@ use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 class TokenController extends Controller
 {
     public function generateTokenAction(Request $request){
+
         $accessTokenRepository = $this->getDoctrine()
             ->getRepository(AccessToken::class);
+
         $userRepository = $this->getDoctrine()
             ->getRepository(User::class);
 
@@ -32,18 +33,16 @@ class TokenController extends Controller
             ]
         );
 
-        $response = new Response();
-
         if ($user){
 
             $tokenExist = $accessTokenRepository->findOneBy(
                 [
-                'userId' =>$user->getId()
+                    'userId' =>$user->getId()
                 ]
             );
 
             if ($tokenExist){
-                $response = new JsonResponse(
+                return new JsonResponse(
                     [
                         'Status' => 'Exito',
                         'Token' => $tokenExist->getToken()
@@ -61,16 +60,14 @@ class TokenController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($token);
             $em->flush();
-            $em->getConnection()->close();
+            $em->clear();
 
-            $response = new JsonResponse(
+            return new JsonResponse(
                 [
                     'Status' => 'Exito',
                     'Token' => $token->getToken()
                 ]
             );
-
-            return $response;
         }
 
         throw new BadRequestHttpException(

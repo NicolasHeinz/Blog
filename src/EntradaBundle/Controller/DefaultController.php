@@ -12,7 +12,7 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $id = $request->getSession()->get('id');
+        $id = $request->getSession()->get('user')->getId();
 
         $entrada = new Entrada();
 
@@ -32,7 +32,7 @@ class DefaultController extends Controller
             $newBody = $serviceTransfor->TransformText($entrada->getCuerpo());
             $entrada->setCuerpo($newBody);
 
-            $entrada->setAutor($id);
+            $entrada->setUserId($id);
             $entrada->setFechaCreacion(new DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
@@ -73,7 +73,6 @@ class DefaultController extends Controller
         $entradaEditada->setCuerpo($cuerpo);
 
         $em = $this->getDoctrine()->getManager();
-        $em->persist($entradaEditada);
         $em->flush();
 
         if($path == "profile/home/"){
@@ -81,7 +80,6 @@ class DefaultController extends Controller
         }
 
         return $this->redirectToRoute('home_homepage');
-
     }
 
     public function deletEntradaAction(Request $request){

@@ -18,7 +18,7 @@ class EntradaRepository extends \Doctrine\ORM\EntityRepository
         return $qb->select('entrada')
             ->join('LoginBundle\Entity\User',
                 'user',Expr\Join::WITH,
-                'entrada.autor = user.id')
+                'entrada.user_id = user.id')
             ->where(
                 $qb->expr()->eq('user.active',':active')
             )->setParameter('active',1)

@@ -231,6 +231,21 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
             return array (  '_controller' => 'LoginBundle\\Controller\\DefaultController::loginAction',  '_route' => 'log-in',);
         }
 
+        // login
+        if ('' === $trimmedPathinfo) {
+            $ret = array (  '_controller' => 'LoginBundle\\Controller\\DefaultController::indexAction',  '_route' => 'login',);
+            if ('/' === substr($pathinfo, -1)) {
+                // no-op
+            } elseif ('GET' !== $canonicalMethod) {
+                goto not_login;
+            } else {
+                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'login'));
+            }
+
+            return $ret;
+        }
+        not_login:
+
         // registro
         if ('/registro' === $trimmedPathinfo) {
             $ret = array (  '_controller' => 'LoginBundle\\Controller\\DefaultController::registroAction',  '_route' => 'registro',);
@@ -250,21 +265,6 @@ class appDevDebugProjectContainerUrlMatcher extends Symfony\Bundle\FrameworkBund
         if ('/recuperar' === $pathinfo) {
             return array (  '_controller' => 'LoginBundle\\Controller\\DefaultController::recuperarAction',  '_route' => 'recuperar_password',);
         }
-
-        // login
-        if ('' === $trimmedPathinfo) {
-            $ret = array (  '_controller' => 'LoginBundle\\Controller\\DefaultController::indexAction',  '_route' => 'login',);
-            if ('/' === substr($pathinfo, -1)) {
-                // no-op
-            } elseif ('GET' !== $canonicalMethod) {
-                goto not_login;
-            } else {
-                return array_replace($ret, $this->redirect($rawPathinfo.'/', 'login'));
-            }
-
-            return $ret;
-        }
-        not_login:
 
         // logout
         if ('/salir' === $pathinfo) {

@@ -4,11 +4,12 @@ namespace LoginBundle\DataFixtures\ORM;
 
 use DateTime;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use LoginBundle\Entity\User;
 
 
-class LoadUserData implements FixtureInterface
+class LoadUserData implements FixtureInterface/*,OrderedFixtureInterface*/
 {
     /**
      *
@@ -16,7 +17,7 @@ class LoadUserData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 100; $i++) {
+        for ($i = 497; $i <597; $i++) {
             $this->createUser($manager, $i);
         }
     }
@@ -41,4 +42,9 @@ class LoadUserData implements FixtureInterface
         $manager->persist($usuarios);
         $manager->flush();
     }
+
+    /*public function getOrder()
+    {
+        return 1;
+    }*/
 }

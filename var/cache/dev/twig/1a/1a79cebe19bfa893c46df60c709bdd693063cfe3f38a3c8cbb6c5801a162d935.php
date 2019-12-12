@@ -12,7 +12,7 @@ use Twig\Sandbox\SecurityNotAllowedFunctionError;
 use Twig\Source;
 use Twig\Template;
 
-/* HomeBundle:t:_defaultTableAlt.html.twig */
+/* @Home/t/_defaultTableAlt.html.twig */
 class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a071eb9 extends \Twig\Template
 {
     private $source;
@@ -27,7 +27,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
         $this->parent = false;
 
         // line 2
-        $_trait_0 = $this->loadTemplate("@KilikTable/_blocks.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 2);
+        $_trait_0 = $this->loadTemplate("@KilikTable/_blocks.html.twig", "@Home/t/_defaultTableAlt.html.twig", 2);
         if (!$_trait_0->isTraitable()) {
             throw new RuntimeError('Template "'."@KilikTable/_blocks.html.twig".'" cannot be used as a trait.', 2, $this->source);
         }
@@ -79,10 +79,10 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
     {
         $macros = $this->macros;
         $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
-        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "HomeBundle:t:_defaultTableAlt.html.twig"));
+        $__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e->enter($__internal_085b0142806202599c7fe3b329164a92397d8978207a37e79d70b8c52599e33e_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@Home/t/_defaultTableAlt.html.twig"));
 
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
-        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "HomeBundle:t:_defaultTableAlt.html.twig"));
+        $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "template", "@Home/t/_defaultTableAlt.html.twig"));
 
         // line 8
         echo         $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderBlock(twig_get_attribute($this->env, $this->source, (isset($context["table"]) || array_key_exists("table", $context) ? $context["table"] : (function () { throw new RuntimeError('Variable "table" does not exist.', 8, $this->source); })()), "formView", [], "any", false, false, false, 8), 'form_start');
@@ -103,10 +103,10 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
         ";
         // line 20
         echo "        ";
-        $this->loadTemplate("@KilikTable/_setup.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 20)->display($context);
+        $this->loadTemplate("@KilikTable/_setup.html.twig", "@Home/t/_defaultTableAlt.html.twig", 20)->display($context);
         // line 21
         echo "        ";
-        $this->loadTemplate("@KilikTable/_rowsPerPage.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 21)->display($context);
+        $this->loadTemplate("@KilikTable/_rowsPerPage.html.twig", "@Home/t/_defaultTableAlt.html.twig", 21)->display($context);
         // line 22
         echo "
     </div>
@@ -301,7 +301,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
         foreach ($context['_seq'] as $context["_key"] => $context["column"]) {
             // line 35
             echo "                                ";
-            $this->loadTemplate("@KilikTable/_columnName.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 35)->display($context);
+            $this->loadTemplate("@KilikTable/_columnName.html.twig", "@Home/t/_defaultTableAlt.html.twig", 35)->display($context);
             // line 36
             echo "                            ";
             ++$context['loop']['index0'];
@@ -379,7 +379,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
         foreach ($context['_seq'] as $context["_key"] => $context["column"]) {
             // line 47
             echo "                                    ";
-            $this->loadTemplate("@KilikTable/_columnFilter.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 47)->display($context);
+            $this->loadTemplate("@KilikTable/_columnFilter.html.twig", "@Home/t/_defaultTableAlt.html.twig", 47)->display($context);
             // line 48
             echo "                                ";
             ++$context['loop']['index0'];
@@ -510,7 +510,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
         // line 64
         echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("profile", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["row"]) || array_key_exists("row", $context) ? $context["row"] : (function () { throw new RuntimeError('Variable "row" does not exist.', 64, $this->source); })()), "object", [], "any", false, false, false, 64), "id", [], "any", false, false, false, 64)]), "html", null, true);
         echo "\">
-                                            <i class=\"fa fa-search\">Ver</i>
+                                            <i class=\"glyphicon glyphicon-search\"></i>
                                         </a>
                                     </td>
                                     ";
@@ -533,7 +533,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
         foreach ($context['_seq'] as $context["_key"] => $context["column"]) {
             // line 69
             echo "                                        ";
-            $this->loadTemplate("@KilikTable/_columnCell.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 69)->display($context);
+            $this->loadTemplate("@KilikTable/_columnCell.html.twig", "@Home/t/_defaultTableAlt.html.twig", 69)->display($context);
             // line 70
             echo "                                    ";
             ++$context['loop']['index0'];
@@ -598,7 +598,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
 
         // line 84
         echo "                ";
-        $this->loadTemplate("@KilikTable/_stats.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 84)->display($context);
+        $this->loadTemplate("@KilikTable/_stats.html.twig", "@Home/t/_defaultTableAlt.html.twig", 84)->display($context);
         // line 85
         echo "            ";
         
@@ -649,7 +649,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
 
         // line 94
         echo "                    ";
-        $this->loadTemplate("@KilikTable/_paginationNumbers.html.twig", "HomeBundle:t:_defaultTableAlt.html.twig", 94)->display($context);
+        $this->loadTemplate("@KilikTable/_paginationNumbers.html.twig", "@Home/t/_defaultTableAlt.html.twig", 94)->display($context);
         // line 95
         echo "                ";
         
@@ -680,7 +680,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
 
     public function getTemplateName()
     {
-        return "HomeBundle:t:_defaultTableAlt.html.twig";
+        return "@Home/t/_defaultTableAlt.html.twig";
     }
 
     public function isTraitable()
@@ -759,7 +759,7 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
                                 {% block tableBodyStdColumns %}
                                     <td>
                                         <a href=\"{{ path('profile',{id:row.object.id}) }}\">
-                                            <i class=\"fa fa-search\">Ver</i>
+                                            <i class=\"glyphicon glyphicon-search\"></i>
                                         </a>
                                     </td>
                                     {% for column in table.columns %}
@@ -797,6 +797,6 @@ class __TwigTemplate_6cf06ae597d0fc3cb034e3b2b9940b14ecf0a96c702bb93804dc7b1c4a0
 {% block tableAfterPanel %}
 {% endblock tableAfterPanel %}
 {{ form_end(table.formView) }}
-", "HomeBundle:t:_defaultTableAlt.html.twig", "/home/nicolas/Documentos/Blog/src/HomeBundle/Resources/views/t/_defaultTableAlt.html.twig");
+", "@Home/t/_defaultTableAlt.html.twig", "/home/nicolas/Documentos/Blog/src/HomeBundle/Resources/views/t/_defaultTableAlt.html.twig");
     }
 }

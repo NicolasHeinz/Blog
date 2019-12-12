@@ -74,20 +74,20 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
                 ";
         // line 18
         $this->displayBlock('menu', $context, $blocks);
-        // line 82
+        // line 83
         echo "                ";
         $this->displayBlock('content', $context, $blocks);
-        // line 83
+        // line 84
         echo "            </div>
         </div>
 
         ";
-        // line 86
+        // line 87
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 102
+        // line 104
         echo "        ";
         $this->displayBlock('scripts', $context, $blocks);
-        // line 103
+        // line 105
         echo "    </body>
 </html>
 ";
@@ -176,8 +176,8 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
                                         <a class=\"nav-link perfil\"
                                            href=\"";
         // line 43
-        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("profile", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 44
-(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "session", [], "any", false, false, false, 44), "get", [0 => "id"], "method", false, false, false, 44)]), "html", null, true);
+        echo twig_escape_filter($this->env, $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("profile", ["id" => twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source,         // line 44
+(isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 44, $this->source); })()), "session", [], "any", false, false, false, 44), "get", [0 => "user"], "method", false, false, false, 44), "id", [], "any", false, false, false, 44)]), "html", null, true);
         echo "\">
                                             Perfil
                                         </a>
@@ -202,7 +202,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
                                     </li>
                                     ";
         // line 60
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 60, $this->source); })()), "session", [], "any", false, false, false, 60), "get", [0 => "rol"], "method", false, false, false, 60) == twig_constant("LoginBundle\\Repository\\usersRepository::USER_ADMIN"))) {
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 60, $this->source); })()), "session", [], "any", false, false, false, 60), "get", [0 => "user"], "method", false, false, false, 60), "rol", [], "any", false, false, false, 60) == twig_constant("LoginBundle\\Repository\\usersRepository::USER_ADMIN"))) {
             // line 65
             echo "                                        <li class=\"nav-item lista\">
                                             <a class=\"nav-link\"
@@ -225,6 +225,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
                                             Salir
                                         </a>
                                     </li>
+                                </ul>
                             </div>
                         </nav>
                     </div>
@@ -237,7 +238,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
 
     }
 
-    // line 82
+    // line 83
     public function block_content($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -255,7 +256,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
 
     }
 
-    // line 86
+    // line 87
     public function block_javascripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -265,8 +266,9 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "javascripts"));
 
-        // line 87
-        echo "            <script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"
+        // line 88
+        echo "            <script
+                    src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"
                     integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\"
                     crossorigin=\"anonymous\">
             </script>
@@ -289,7 +291,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
 
     }
 
-    // line 102
+    // line 104
     public function block_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -319,7 +321,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
 
     public function getDebugInfo()
     {
-        return array (  293 => 102,  269 => 87,  259 => 86,  241 => 82,  222 => 73,  219 => 72,  211 => 67,  207 => 65,  205 => 60,  198 => 56,  189 => 50,  180 => 44,  179 => 43,  170 => 37,  150 => 19,  140 => 18,  122 => 6,  103 => 5,  91 => 103,  88 => 102,  86 => 86,  81 => 83,  78 => 82,  76 => 18,  61 => 7,  59 => 6,  55 => 5,  49 => 1,);
+        return array (  295 => 104,  270 => 88,  260 => 87,  242 => 83,  222 => 73,  219 => 72,  211 => 67,  207 => 65,  205 => 60,  198 => 56,  189 => 50,  180 => 44,  179 => 43,  170 => 37,  150 => 19,  140 => 18,  122 => 6,  103 => 5,  91 => 105,  88 => 104,  86 => 87,  81 => 84,  78 => 83,  76 => 18,  61 => 7,  59 => 6,  55 => 5,  49 => 1,);
     }
 
     public function getSourceContext()
@@ -367,7 +369,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
                                     <li class=\"nav-item\">
                                         <a class=\"nav-link perfil\"
                                            href=\"{{ path('profile',
-                                               {id: app.session.get('id')}) }}\">
+                                               {id: app.session.get('user').id}) }}\">
                                             Perfil
                                         </a>
                                     </li>
@@ -383,7 +385,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
                                             Crear Blog
                                         </a>
                                     </li>
-                                    {% if app.session.get('rol') ==
+                                    {% if app.session.get('user').rol ==
                                         constant(
                                         'LoginBundle\\\\Repository\\\\usersRepository::USER_ADMIN'
                                         )
@@ -401,6 +403,7 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
                                             Salir
                                         </a>
                                     </li>
+                                </ul>
                             </div>
                         </nav>
                     </div>
@@ -410,7 +413,8 @@ class __TwigTemplate_b6c9c2a9c5f0397394021d59b1462a5851706f304409bb8f67ae63aecc2
         </div>
 
         {% block javascripts %}
-            <script src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"
+            <script
+                    src=\"https://code.jquery.com/jquery-3.2.1.slim.min.js\"
                     integrity=\"sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN\"
                     crossorigin=\"anonymous\">
             </script>

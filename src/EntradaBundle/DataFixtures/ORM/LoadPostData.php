@@ -4,11 +4,12 @@ namespace EntradaBundle\DataFixtures\ORM;
 
 use DateTime;
 use Doctrine\Common\DataFixtures\FixtureInterface;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use EntradaBundle\Entity\Entrada;
 
 
-class LoadPostData implements FixtureInterface
+class LoadPostData implements FixtureInterface/*,OrderedFixtureInterface*/
 {
     /**
      *
@@ -16,7 +17,7 @@ class LoadPostData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 1; $i < 100; $i++) {
+        for ($i = 497; $i < 597; $i++) {
             $this->createPost($manager, $i);
         }
     }
@@ -29,11 +30,16 @@ class LoadPostData implements FixtureInterface
     private function createPost(ObjectManager $manager, $n)
     {
         $entradas = new Entrada();
-        $entradas->setAutor($n);
+        $entradas->setUserId($n);
         $entradas->setTitulo("Titulo".$n);
         $entradas->setCuerpo("Cuerpo".$n);
         $entradas->setFechaCreacion(new DateTime());
         $manager->persist($entradas);
         $manager->flush();
     }
+
+    /*public function getOrder()
+    {
+        return 2;
+    }*/
 }

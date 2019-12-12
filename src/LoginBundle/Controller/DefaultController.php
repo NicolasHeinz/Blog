@@ -2,6 +2,7 @@
 
 namespace LoginBundle\Controller;
 
+use DateTime;
 use LoginBundle\Entity\User;
 use LoginBundle\Form\usersType;
 use LoginBundle\Repository\usersRepository;
@@ -12,8 +13,7 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class DefaultController extends Controller
 {
-    public function indexAction(Request $request,
-                                AuthenticationUtils $authenticationUtils)
+    public function indexAction(AuthenticationUtils $authenticationUtils)
     {
         $error = $authenticationUtils->getLastAuthenticationError();
 
@@ -43,7 +43,7 @@ class DefaultController extends Controller
 
             $usuario = $form->getData();
 
-            $usuario->setCreatedDate(new \DateTime('now'));
+            $usuario->setCreatedDate(new DateTime('now'));
             $usuario->setActive(false);
             $usuario->setRol(usersRepository::USER_ROL);
 
@@ -80,6 +80,7 @@ class DefaultController extends Controller
 
            $repositoryUser = $this->getDoctrine()
                ->getRepository(User::class);
+
            $usuarioBuscado = $repositoryUser->findOneBy([
                'email' => $usuario->getEmail()
                ]
@@ -109,30 +110,25 @@ class DefaultController extends Controller
     {
         $usuario = $request->request->get('users');
 
-        if($usuario){
+        $repository = $this->getDoctrine()
+            ->getRepository(User::class);
 
-            $repository = $this->getDoctrine()
-                ->getRepository(User::class);
+        $usuarioLogin = $repository->findOneBy([
+            'email' => $usuario['email'],
+            'password' => $usuario['password'],
+            'active' => true
+        ]);
 
-            $usuarioLogin = $repository->findOneBy([
-                'email' => $usuario['email'],
-                'password' => $usuario['password'],
-                'active' => true
-            ]);
+        if($usuarioLogin){
 
-            if($usuarioLogin){
+            $session = new Session();
 
-                $session = new Session();
+            $session->clear();
 
-                $session->clear();
+            $session->set('user',$usuarioLogin);
 
-                $session->set('id',$usuarioLogin->getId());
-                $session->set('rol',$usuarioLogin->getRol());
-
-                return $this->redirectToRoute('home_homepage');
-            }
-
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('home_homepage');
         }
+        return $this->redirectToRoute('login');
     }
 }

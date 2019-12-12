@@ -24,8 +24,6 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-
-      /** @var EntradaRepository $repositoryUser */
         $repositoryEntrada = $this->getDoctrine()
             ->getRepository(Entrada::class);
 
@@ -95,7 +93,7 @@ class DefaultController extends Controller
             $user->setPassword($usuarioDatos->getPassword());
             $user->setUsername($usuarioDatos->getUsername());
 
-            if($request->getSession()->get('rol') ==
+            if($request->getSession()->get('user')->getRol() ==
                 usersRepository::USER_ADMIN){
 
                 $activo= $request->request->get('_select_active');
@@ -110,9 +108,8 @@ class DefaultController extends Controller
                 $user->setActive($activo);
                 $user->setRol($rol);
 
-                if($user->getId() == $request->getSession()->get('id')){
-                    $request->getSession()->set('rol',$rol);
-                    $request->getSession()->set('activo',$activo);
+                if($user->getId() == $request->getSession()->get('user')->getId()){
+                    $request->getSession()->set('user',$user);
                 }
             }
 
@@ -120,6 +117,9 @@ class DefaultController extends Controller
             $em->persist($user);
             $em->flush();
 
+            if ($request->getSession()->get('user')->getActive() == false){
+                return $this->redirectToRoute('logout');
+            }
             return $this->redirectToRoute("home_homepage");
         }
 
@@ -138,8 +138,10 @@ class DefaultController extends Controller
         $repository = $this->getDoctrine()
             ->getRepository(Entrada::class);
 
-        $entradas = $repository->findByAutor(
-            $request->getSession()->get('id')
+        $entradas = $repository->findBy(
+            [
+                'user_id' => $request->getSession()->get('user')->getId()
+            ]
         );
 
         $entrada  = new Entrada();

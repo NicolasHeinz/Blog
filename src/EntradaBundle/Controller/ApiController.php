@@ -3,8 +3,6 @@
 namespace EntradaBundle\Controller;
 
 use DateTime;
-use EntradaBundle\Entity\AccessToken;
-use LoginBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -13,6 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 use EntradaBundle\Entity\Entrada;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 
 /**
@@ -29,23 +28,20 @@ class ApiController extends Controller
         $entradas = $repository->findAll();
 
         if ($entradas){
-            $response = new Response();
+
             $entradasArray = [];
 
             foreach ($entradas as $entrada){
 
                 array_push($entradasArray, [
                     'id' => $entrada->getId(),
-                    'autor' => $entrada->getAutor(),
+                    'user_id' => $entrada->getUserId(),
                     'titulo'=> $entrada->getTitulo(),
                     'cuerpo' => $entrada->getCuerpo(),
                     'created_date' => $entrada->getFechaCreacion()
                 ]);
             }
-
-            $response = new JsonResponse($entradasArray);
-
-            return $response;
+            return new JsonResponse($entradasArray);
         }
 
         throw new BadRequestHttpException(
@@ -62,35 +58,36 @@ class ApiController extends Controller
 
         $entradas = $repository->find($id);
 
-        $response = new Response();
-
         if($entradas){
-            $response = new JsonResponse([
+
+            $arr = [
                 'id' => $entradas->getId(),
-                'autor' => $entradas->getAutor(),
+                'user_id' => $entradas->getUserId(),
                 'titulo' => $entradas->getTitulo(),
                 'cuerpo' => $entradas->getCuerpo(),
                 'created_date' => $entradas->getFechaCreacion()
-            ]);
+            ];
 
-            return $response;
+            return new JsonResponse(
+                 ['Entradas' => $arr]
+            );
         }
 
-        throw new BadRequestHttpException('No existe el Post',
+        throw new NotFoundHttpException('No existe el Post',
             null,
-            400
+            404
         );
     }
 
     public function saveEntradaAction(Request $request)
     {
-        if( ($request->get('autor') != null) &&
+        if( ($request->get('user_id') != null) &&
             ($request->get('titulo') != null) &&
             ($request->get('cuerpo') != null) ){
 
             $entrada = new Entrada();
 
-            $entrada->setAutor($request->get('autor'));
+            $entrada->setUserId($request->get('user_id'));
             $entrada->setTitulo($request->get('titulo'));
             $entrada->setCuerpo($request->get('cuerpo'));
             $entrada->setFechaCreacion(new DateTime());
@@ -98,19 +95,15 @@ class ApiController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($entrada);
             $em->flush();
-            $em->getConnection()->close();
+            $em->clear();
 
-            $response = new Response();
-
-            $response = new JsonResponse([
+            return new JsonResponse([
                 'id' => $entrada->getId(),
-                'autor' => $entrada->getAutor(),
+                'user_id' => $entrada->getUserId(),
                 'titulo' => $entrada->getTitulo(),
                 'cuerpo' => $entrada->getCuerpo(),
                 'created_date' => $entrada->getFechaCreacion()
             ]);
-
-            return $response;
         }
 
         throw new BadRequestHttpException(
@@ -120,34 +113,29 @@ class ApiController extends Controller
         );
     }
 
-
     public function editEntradaAction(Request $request)
     {
         $repository = $this->getDoctrine()
             ->getRepository(Entrada::class);
         $entrada = $repository->find($request->get('id'));
 
-        $response = new Response();
-
-        if($entrada){
-            $entrada->setAutor($request->get('autor'));
+        if(!empty($entrada)){
+            $entrada->getUserId($request->get('user_id'));
             $entrada->setTitulo($request->get('titulo'));
             $entrada->setCuerpo($request->get('cuerpo'));
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($entrada);
             $em->flush();
-            $em->getConnection()->close();
+            $em->clear();
 
-            $response = new JsonResponse([
+            return new JsonResponse([
                 'id' => $entrada->getId(),
-                'autor' => $entrada->getAutor(),
+                'user_id' => $entrada->getUserId(),
                 'titulo' => $entrada->getTitulo(),
                 'cuerpo' => $entrada->getCuerpo(),
                 'created_date' => $entrada->getFechaCreacion()
             ]);
-
-            return $response;
         }
 
         throw new BadRequestHttpException(
@@ -163,13 +151,11 @@ class ApiController extends Controller
             ->getRepository(Entrada::class);
         $entrada = $repository->find($id);
 
-        $response = new Response();
-
         if ($entrada){
             $em = $this->getDoctrine()->getManager();
             $em->remove($entrada);
             $em->flush();
-            $em->getConnection()->close();
+            $em->clear();
 
             return new Response(
                 new JsonResponse(['Status'=>'Borrado con Exito'])

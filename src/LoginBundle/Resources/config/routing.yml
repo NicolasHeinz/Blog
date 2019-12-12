@@ -1,10 +1,10 @@
-registro:
-    path:   /registro/
-    defaults:   { _controller: LoginBundle:Default:registro }
-
 login:
     path:   /
     defaults:   { _controller: LoginBundle:Default:index }
+
+registro:
+    path:   /registro/
+    defaults:   { _controller: LoginBundle:Default:registro }
 
 logout:
     path:   /salir

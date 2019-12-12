@@ -83,7 +83,7 @@ class __TwigTemplate_0f12a8f1b0a511cff7eb1ea6658aee22f9b3dcf4c0782732719537bc287
 
                 ";
         // line 13
-        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "session", [], "any", false, false, false, 13), "get", [0 => "rol"], "method", false, false, false, 13) == twig_constant("LoginBundle\\Repository\\usersRepository::USER_ADMIN"))) {
+        if ((twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, twig_get_attribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 13, $this->source); })()), "session", [], "any", false, false, false, 13), "get", [0 => "user"], "method", false, false, false, 13), "rol", [], "any", false, false, false, 13) == twig_constant("LoginBundle\\Repository\\usersRepository::USER_ADMIN"))) {
             // line 18
             echo "
                 <div class=\"form-group\">
@@ -285,7 +285,7 @@ $context["a"] == twig_constant("LoginBundle\\Repository\\usersRepository::USER_B
                 </h1>
                 <input type=\"hidden\" name=\"id\" id=\"id\" value=\"{{ user.id }}\">
 
-                {% if app.session.get('rol') ==
+                {% if app.session.get('user').rol ==
                     constant(
                     'LoginBundle\\\\Repository\\\\usersRepository::USER_ADMIN'
                     )

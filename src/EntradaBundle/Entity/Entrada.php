@@ -22,11 +22,11 @@ class Entrada
     private $id;
 
     /**
-     * @var string
+     * @var int
      *
-     * @ORM\Column(name="autor", type="string", length=255)
+     * @ORM\Column(name="user_id", type="string", length=255)
      */
-    private $autor;
+    private $user_id;
 
     /**
      * @var string
@@ -58,30 +58,6 @@ class Entrada
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set autor
-     *
-     * @param string $autor
-     *
-     * @return Entrada
-     */
-    public function setAutor($autor)
-    {
-        $this->autor = $autor;
-
-        return $this;
-    }
-
-    /**
-     * Get autor
-     *
-     * @return string
-     */
-    public function getAutor()
-    {
-        return $this->autor;
     }
 
     /**
@@ -155,5 +131,28 @@ class Entrada
     {
         return $this->fechaCreacion;
     }
-}
 
+    /**
+     * Set userId.
+     *
+     * @param string $userId
+     *
+     * @return Entrada
+     */
+    public function setUserId($userId)
+    {
+        $this->user_id = $userId;
+
+        return $this;
+    }
+
+    /**
+     * Get userId.
+     *
+     * @return string
+     */
+    public function getUserId()
+    {
+        return $this->user_id;
+    }
+}

@@ -93,28 +93,25 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
             echo "        <div class=\"col-md-6 mt-5 card offset-md-3\">
             <h3 class=\"mt-4 text-center\">Recuperar Contraseña</h3>
             <form class=\"mt-4 mb-4\"
-                  method=\"post\"
-            >
+                  method=\"post\">
                 <div class=\"form-group\">
                     ";
-            // line 13
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 13, $this->source); })()), "email", [], "any", false, false, false, 13), 'label');
+            // line 12
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 12, $this->source); })()), "email", [], "any", false, false, false, 12), 'label');
             echo "
                     ";
-            // line 14
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 14, $this->source); })()), "email", [], "any", false, false, false, 14), 'widget');
+            // line 13
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 13, $this->source); })()), "email", [], "any", false, false, false, 13), 'widget');
             echo "
                     <div class=\"error-email\">
                         ";
-            // line 16
-            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 16, $this->source); })()), "email", [], "any", false, false, false, 16), 'errors');
+            // line 15
+            echo $this->env->getRuntime('Symfony\Component\Form\FormRenderer')->searchAndRenderBlock(twig_get_attribute($this->env, $this->source, (isset($context["form"]) || array_key_exists("form", $context) ? $context["form"] : (function () { throw new RuntimeError('Variable "form" does not exist.', 15, $this->source); })()), "email", [], "any", false, false, false, 15), 'errors');
             echo "
                     </div>
                 </div>
                 <div class=\"text-center\">
-                    <button class=\"btn btn-success\"
-                            data-toggle=\"modal\"
-                            data-target=\"#modalRecuperar\">
+                    <button class=\"btn btn-success\">
                         Recuperar Contraseña
                     </button>
                 </div>
@@ -122,12 +119,12 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
         </div>
     ";
         }
-        // line 29
+        // line 26
         echo "
     ";
-        // line 30
-        if ((isset($context["password"]) || array_key_exists("password", $context) ? $context["password"] : (function () { throw new RuntimeError('Variable "password" does not exist.', 30, $this->source); })())) {
-            // line 31
+        // line 27
+        if ((isset($context["password"]) || array_key_exists("password", $context) ? $context["password"] : (function () { throw new RuntimeError('Variable "password" does not exist.', 27, $this->source); })())) {
+            // line 28
             echo "        <!-- Modal Recuperar Password-->
         <div class=\"modal fade\" id=\"modalRecuperar\" tabindex=\"-1\" role=\"dialog\"
              aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">
@@ -147,13 +144,13 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
                     </div>
 
                     <form  action=\"";
-            // line 49
+            // line 46
             echo $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("login");
             echo "\" method=\"get\">
                         <div class=\"modal-body\">
                             <h4>Tu contraseña es: ";
-            // line 51
-            echo twig_escape_filter($this->env, (isset($context["password"]) || array_key_exists("password", $context) ? $context["password"] : (function () { throw new RuntimeError('Variable "password" does not exist.', 51, $this->source); })()), "html", null, true);
+            // line 48
+            echo twig_escape_filter($this->env, (isset($context["password"]) || array_key_exists("password", $context) ? $context["password"] : (function () { throw new RuntimeError('Variable "password" does not exist.', 48, $this->source); })()), "html", null, true);
             echo "</h4>
                         </div>
                         <div class=\"modal-footer\">
@@ -168,7 +165,7 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
         </div>
     ";
         }
-        // line 64
+        // line 61
         echo "
 ";
         
@@ -179,7 +176,7 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
 
     }
 
-    // line 67
+    // line 64
     public function block_scripts($context, array $blocks = [])
     {
         $macros = $this->macros;
@@ -189,7 +186,7 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02 = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02->enter($__internal_319393461309892924ff6e74d6d6e64287df64b63545b994e100d4ab223aed02_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "scripts"));
 
-        // line 68
+        // line 65
         echo "    <script>
         \$(document).ready(function () {
             \$('#modalRecuperar').modal('toggle');
@@ -216,7 +213,7 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
 
     public function getDebugInfo()
     {
-        return array (  193 => 68,  183 => 67,  172 => 64,  156 => 51,  151 => 49,  131 => 31,  129 => 30,  126 => 29,  110 => 16,  105 => 14,  101 => 13,  93 => 7,  91 => 6,  88 => 5,  78 => 4,  60 => 3,  37 => 1,);
+        return array (  190 => 65,  180 => 64,  169 => 61,  153 => 48,  148 => 46,  128 => 28,  126 => 27,  123 => 26,  109 => 15,  104 => 13,  100 => 12,  93 => 7,  91 => 6,  88 => 5,  78 => 4,  60 => 3,  37 => 1,);
     }
 
     public function getSourceContext()
@@ -230,8 +227,7 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
         <div class=\"col-md-6 mt-5 card offset-md-3\">
             <h3 class=\"mt-4 text-center\">Recuperar Contraseña</h3>
             <form class=\"mt-4 mb-4\"
-                  method=\"post\"
-            >
+                  method=\"post\">
                 <div class=\"form-group\">
                     {{ form_label(form.email) }}
                     {{ form_widget(form.email) }}
@@ -240,9 +236,7 @@ class __TwigTemplate_75e37747c5f35c6de7b6f9b81e7a07688d69e37dc4406564b34e199f790
                     </div>
                 </div>
                 <div class=\"text-center\">
-                    <button class=\"btn btn-success\"
-                            data-toggle=\"modal\"
-                            data-target=\"#modalRecuperar\">
+                    <button class=\"btn btn-success\">
                         Recuperar Contraseña
                     </button>
                 </div>

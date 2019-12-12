@@ -75,7 +75,6 @@ sensio_framework_extra:
    router:
         annotations: false
 
-
 # app/config/config.yml
 fos_oauth_server:
     db_driver: orm       # Drivers available: orm, mongodb, or propel
