@@ -22,6 +22,7 @@
       <parameter key="EntradaBundle">EntradaBundle\EntradaBundle</parameter>
       <parameter key="KilikTableBundle">Kilik\TableBundle\KilikTableBundle</parameter>
       <parameter key="FOSOAuthServerBundle">FOS\OAuthServerBundle\FOSOAuthServerBundle</parameter>
+      <parameter key="DoctrineMigrationsBundle">Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle</parameter>
       <parameter key="DebugBundle">Symfony\Bundle\DebugBundle\DebugBundle</parameter>
       <parameter key="WebProfilerBundle">Symfony\Bundle\WebProfilerBundle\WebProfilerBundle</parameter>
       <parameter key="SensioDistributionBundle">Sensio\Bundle\DistributionBundle\SensioDistributionBundle</parameter>
@@ -94,6 +95,11 @@
         <parameter key="parent">null</parameter>
         <parameter key="path">/home/nicolas/Documentos/Blog/vendor/friendsofsymfony/oauth-server-bundle</parameter>
         <parameter key="namespace">FOS\OAuthServerBundle</parameter>
+      </parameter>
+      <parameter key="DoctrineMigrationsBundle" type="collection">
+        <parameter key="parent">null</parameter>
+        <parameter key="path">/home/nicolas/Documentos/Blog/vendor/doctrine/doctrine-migrations-bundle</parameter>
+        <parameter key="namespace">Doctrine\Bundle\MigrationsBundle</parameter>
       </parameter>
       <parameter key="DebugBundle" type="collection">
         <parameter key="parent">null</parameter>
@@ -383,6 +389,16 @@
       <parameter>Authorize</parameter>
       <parameter>Default</parameter>
     </parameter>
+    <parameter key="doctrine_migrations.dir_name">/home/nicolas/Documentos/Blog/app/DoctrineMigrations</parameter>
+    <parameter key="doctrine_migrations.namespace">Application\Migrations</parameter>
+    <parameter key="doctrine_migrations.table_name">migration_versions</parameter>
+    <parameter key="doctrine_migrations.column_name">version</parameter>
+    <parameter key="doctrine_migrations.column_length">14</parameter>
+    <parameter key="doctrine_migrations.executed_at_column_name">executed_at</parameter>
+    <parameter key="doctrine_migrations.all_or_nothing">false</parameter>
+    <parameter key="doctrine_migrations.name">Application Migrations</parameter>
+    <parameter key="doctrine_migrations.custom_template">null</parameter>
+    <parameter key="doctrine_migrations.organize_migrations">false</parameter>
     <parameter key="web_profiler.debug_toolbar.position">bottom</parameter>
     <parameter key="web_profiler.debug_toolbar.intercept_redirects">false</parameter>
     <parameter key="web_profiler.debug_toolbar.mode">2</parameter>
@@ -502,6 +518,16 @@
       <parameter key="console.command.doctrine_bundle_doctrinebundle_command_importmappingdoctrinecommand">doctrine.mapping_import_command</parameter>
       <parameter key="console.command.fos_oauthserverbundle_command_cleancommand">console.command.fos_oauthserverbundle_command_cleancommand</parameter>
       <parameter key="console.command.fos_oauthserverbundle_command_createclientcommand">console.command.fos_oauthserverbundle_command_createclientcommand</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsdiffdoctrinecommand">doctrine_migrations.diff_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsdumpschemadoctrinecommand">doctrine_migrations.dump_schema_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsexecutedoctrinecommand">doctrine_migrations.execute_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsgeneratedoctrinecommand">doctrine_migrations.generate_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationslatestdoctrinecommand">doctrine_migrations.latest_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsmigratedoctrinecommand">doctrine_migrations.migrate_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsrollupdoctrinecommand">doctrine_migrations.rollup_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsstatusdoctrinecommand">doctrine_migrations.status_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsuptodatedoctrinecommand">doctrine_migrations.up_to_date_command</parameter>
+      <parameter key="console.command.doctrine_bundle_migrationsbundle_command_migrationsversiondoctrinecommand">doctrine_migrations.version_command</parameter>
       <parameter key="console.command.sensiolabs_security_command_securitycheckercommand">sensio_distribution.security_checker.command</parameter>
       <parameter key="console.command.doctrine_bundle_fixturesbundle_command_loaddatafixturesdoctrinecommand">doctrine.fixtures_load_command</parameter>
       <parameter key="console.command.symfony_bundle_webserverbundle_command_serverruncommand">web_server.command.server_run</parameter>
@@ -550,6 +576,16 @@
       <parameter key="doctrine.schema_update_command">true</parameter>
       <parameter key="doctrine.schema_validate_command">true</parameter>
       <parameter key="doctrine.mapping_import_command">true</parameter>
+      <parameter key="doctrine_migrations.diff_command">true</parameter>
+      <parameter key="doctrine_migrations.dump_schema_command">true</parameter>
+      <parameter key="doctrine_migrations.execute_command">true</parameter>
+      <parameter key="doctrine_migrations.generate_command">true</parameter>
+      <parameter key="doctrine_migrations.latest_command">true</parameter>
+      <parameter key="doctrine_migrations.migrate_command">true</parameter>
+      <parameter key="doctrine_migrations.rollup_command">true</parameter>
+      <parameter key="doctrine_migrations.status_command">true</parameter>
+      <parameter key="doctrine_migrations.up_to_date_command">true</parameter>
+      <parameter key="doctrine_migrations.version_command">true</parameter>
       <parameter key="sensio_distribution.security_checker.command">true</parameter>
       <parameter key="doctrine.fixtures_load_command">true</parameter>
       <parameter key="web_server.command.server_run">true</parameter>
@@ -566,6 +602,7 @@
       <tag name="controller.service_arguments"/>
     </service>
     <service id="app.transform_text" class="EntradaBundle\Services\ServiceEntrada" public="true" autowire="true" autoconfigure="true"/>
+    <service id="app.generate_code" class="LoginBundle\Services\ServiceUser" public="true" autowire="true" autoconfigure="true"/>
     <service id="LoginBundle\Controller\DefaultController" class="LoginBundle\Controller\DefaultController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
     </service>
@@ -4179,6 +4216,66 @@
       <argument type="service" id="session" on-invalid="null"/>
       <argument>twig</argument>
     </service>
+    <service id="doctrine_migrations.diff_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsDiffDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:diff</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.dump_schema_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsDumpSchemaDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:dump-schema</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.execute_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsExecuteDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:execute</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.generate_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsGenerateDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:generate</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.latest_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsLatestDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:latest</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.migrate_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsMigrateDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:migrate</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.rollup_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsRollupDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:rollup</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.status_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsStatusDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:status</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.up_to_date_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsUpToDateDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:up-to-date</argument>
+      </call>
+    </service>
+    <service id="doctrine_migrations.version_command" class="Doctrine\Bundle\MigrationsBundle\Command\MigrationsVersionDoctrineCommand">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>doctrine:migrations:version</argument>
+      </call>
+    </service>
     <service id="twig.extension.dump" class="Symfony\Bridge\Twig\Extension\DumpExtension" public="false">
       <tag name="twig.extension"/>
       <argument type="service" id="var_dumper.cloner"/>
@@ -4588,7 +4685,7 @@
       <argument>true</argument>
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
-      <argument type="service" id="service_locator.8ahl0sj"/>
+      <argument type="service" id="service_locator.qdvmz.q"/>
       <argument type="collection">
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
@@ -4629,6 +4726,16 @@
         <argument key="doctrine:schema:update">doctrine.schema_update_command</argument>
         <argument key="doctrine:schema:validate">doctrine.schema_validate_command</argument>
         <argument key="doctrine:mapping:import">doctrine.mapping_import_command</argument>
+        <argument key="doctrine:migrations:diff">doctrine_migrations.diff_command</argument>
+        <argument key="doctrine:migrations:dump-schema">doctrine_migrations.dump_schema_command</argument>
+        <argument key="doctrine:migrations:execute">doctrine_migrations.execute_command</argument>
+        <argument key="doctrine:migrations:generate">doctrine_migrations.generate_command</argument>
+        <argument key="doctrine:migrations:latest">doctrine_migrations.latest_command</argument>
+        <argument key="doctrine:migrations:migrate">doctrine_migrations.migrate_command</argument>
+        <argument key="doctrine:migrations:rollup">doctrine_migrations.rollup_command</argument>
+        <argument key="doctrine:migrations:status">doctrine_migrations.status_command</argument>
+        <argument key="doctrine:migrations:up-to-date">doctrine_migrations.up_to_date_command</argument>
+        <argument key="doctrine:migrations:version">doctrine_migrations.version_command</argument>
         <argument key="security:check">sensio_distribution.security_checker.command</argument>
         <argument key="doctrine:fixtures:load">doctrine.fixtures_load_command</argument>
         <argument key="server:run">web_server.command.server_run</argument>
@@ -4638,7 +4745,7 @@
         <argument key="server:log">web_server.command.server_log</argument>
       </argument>
     </service>
-    <service id="service_locator.8ahl0sj" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id="service_locator.qdvmz.q" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="console.command.about" type="service" id="console.command.about"/>
@@ -4678,6 +4785,16 @@
         <argument key="doctrine.schema_drop_command" type="service" id="doctrine.schema_drop_command"/>
         <argument key="doctrine.schema_update_command" type="service" id="doctrine.schema_update_command"/>
         <argument key="doctrine.schema_validate_command" type="service" id="doctrine.schema_validate_command"/>
+        <argument key="doctrine_migrations.diff_command" type="service" id="doctrine_migrations.diff_command"/>
+        <argument key="doctrine_migrations.dump_schema_command" type="service" id="doctrine_migrations.dump_schema_command"/>
+        <argument key="doctrine_migrations.execute_command" type="service" id="doctrine_migrations.execute_command"/>
+        <argument key="doctrine_migrations.generate_command" type="service" id="doctrine_migrations.generate_command"/>
+        <argument key="doctrine_migrations.latest_command" type="service" id="doctrine_migrations.latest_command"/>
+        <argument key="doctrine_migrations.migrate_command" type="service" id="doctrine_migrations.migrate_command"/>
+        <argument key="doctrine_migrations.rollup_command" type="service" id="doctrine_migrations.rollup_command"/>
+        <argument key="doctrine_migrations.status_command" type="service" id="doctrine_migrations.status_command"/>
+        <argument key="doctrine_migrations.up_to_date_command" type="service" id="doctrine_migrations.up_to_date_command"/>
+        <argument key="doctrine_migrations.version_command" type="service" id="doctrine_migrations.version_command"/>
         <argument key="security.command.user_password_encoder" type="service" id="security.command.user_password_encoder"/>
         <argument key="sensio_distribution.security_checker.command" type="service" id="sensio_distribution.security_checker.command"/>
         <argument key="twig.command.debug" type="service" id="twig.command.debug"/>

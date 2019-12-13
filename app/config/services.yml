@@ -38,6 +38,10 @@ services:
         class: EntradaBundle\Services\ServiceEntrada
         public: true
 
+    app.generate_code:
+        class: LoginBundle\Services\ServiceUser
+        public: true
+
     LoginBundle\Controller\DefaultController:
         public: true
         bind:

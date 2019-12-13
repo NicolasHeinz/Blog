@@ -47,6 +47,9 @@ class DefaultController extends Controller
             $usuario->setActive(false);
             $usuario->setRol(usersRepository::USER_ROL);
 
+            $serviceGenerateCode = $this->get('app.generate_code');
+            $usuario->setUserAccountId($serviceGenerateCode->GenerateCodeAccount());
+
             $em = $this->getDoctrine()->getManager();
             $em->persist($usuario);
             $em->flush();

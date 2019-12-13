@@ -74,6 +74,13 @@
                 {{ form_label(form.username) }}
                 {{ form_widget(form.username,{'value':user.username}) }}
 
+                {{ form_label(form.notes) }}
+                {{ form_widget(form.notes,{'value':user.notes}) }}
+
+                <div class="form-group">
+                    <label for="account_code">Codigo de Usuario</label>
+                    <input type="text" class="form-control" value="{{ user.useraccountid }}" disabled>
+                </div>
                 <div class="col-md-12 text-center mt-3 mb-3">
                     <button type="submit" class="btn btn-primary">
                         Guardar

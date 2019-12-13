@@ -41,6 +41,11 @@ class usersType extends AbstractType
                 'label' => 'Contraseña',
                 'attr' => ['class'=>'form-control']
             ])
+            ->add('notes',TextType::class, [
+                'label' => 'Nota',
+                'required' => false,
+                'attr' => ['class'=>'form-control']
+            ])
             ->add('Registrarte',SubmitType::class, [
                 'attr' => ['class'=>'btn btn-success m-3']
             ]);
