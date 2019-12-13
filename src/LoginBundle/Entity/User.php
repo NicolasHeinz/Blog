@@ -14,8 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *
  * @ORM\Table(name="user")
  * @ORM\Entity(repositoryClass="LoginBundle\Repository\usersRepository")
- * @UniqueEntity("email",message="Este Email ya esta en uso.")
- * @UniqueEntity("username",message="Este Nombre de Usuario ya esta en uso.")
+ *
  */
 class User implements UserInterface
 {
@@ -112,6 +111,22 @@ class User implements UserInterface
      * @ORM\Column(name="rol", type="string", length=255, options={"default":"Usuario"})
      */
     private $rol=["Usuario","Administrador"];
+
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="notes", type="string", nullable=true)
+     *
+     */
+    private $notes;
+
+    /**
+     * @ORM\Column(name="user_account_id", type="string", length=255)
+     *
+     * @Assert\NotBlank
+     */
+    private $userAccountId;
 
 
     /**
@@ -374,5 +389,53 @@ class User implements UserInterface
     public function getEntradas()
     {
         return $this->entradas;
+    }
+
+    /**
+     * Set notes.
+     *
+     * @param string|null $notes
+     *
+     * @return User
+     */
+    public function setNotes($notes = null)
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+    /**
+     * Get notes.
+     *
+     * @return string|null
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
+
+    /**
+     * Set userAccountId.
+     *
+     * @param string $userAccountId
+     *
+     * @return User
+     */
+    public function setUserAccountId($userAccountId)
+    {
+        $this->userAccountId = $userAccountId;
+
+        return $this;
+    }
+
+    /**
+     * Get userAccountId.
+     *
+     * @return string
+     */
+    public function getUserAccountId()
+    {
+        return $this->userAccountId;
     }
 }

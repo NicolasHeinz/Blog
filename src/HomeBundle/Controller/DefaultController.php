@@ -92,6 +92,7 @@ class DefaultController extends Controller
             $user->setEmail($usuarioDatos->getEmail());
             $user->setPassword($usuarioDatos->getPassword());
             $user->setUsername($usuarioDatos->getUsername());
+            $user->setNotes($usuarioDatos->getNotes());
 
             if($request->getSession()->get('user')->getRol() ==
                 usersRepository::USER_ADMIN){
@@ -206,6 +207,15 @@ class DefaultController extends Controller
                     )
             )
             ->addColumn(
+                (new Column())->setLabel('Codigo de Cuenta')
+                    ->setSort(['u.user_account_id' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.user_account_id')
+                            ->setName('u_user_account_id')
+                    )
+            )
+            ->addColumn(
                 (new Column())->setLabel('Nombre')
                     ->setSort(['u.name' => 'asc'])
                     ->setFilter(
@@ -278,6 +288,15 @@ class DefaultController extends Controller
                         (new Filter())
                             ->setField('u.rol')
                             ->setName('u_rol')
+                    )
+            )
+            ->addColumn(
+                (new Column())->setLabel('Notas')
+                    ->setSort(['u.notes' => 'asc'])
+                    ->setFilter(
+                        (new Filter())
+                            ->setField('u.notes')
+                            ->setName('u_notes')
                     )
             );
 

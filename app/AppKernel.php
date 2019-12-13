@@ -21,7 +21,8 @@ class AppKernel extends Kernel
             new HomeBundle\HomeBundle(),
             new EntradaBundle\EntradaBundle(),
             new \Kilik\TableBundle\KilikTableBundle(),
-            new FOS\OAuthServerBundle\FOSOAuthServerBundle()
+            new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
