@@ -12,8 +12,6 @@ class DefaultController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $id = $request->getSession()->get('user')->getId();
-
         $entrada = new Entrada();
 
         $form = $this->createForm(EntradaType::class,$entrada);
@@ -32,11 +30,11 @@ class DefaultController extends Controller
             $newBody = $serviceTransfor->TransformText($entrada->getCuerpo());
             $entrada->setCuerpo($newBody);
 
-            $entrada->setUserId($id);
+            $entrada->setUser($request->getSession()->get('user'));
             $entrada->setFechaCreacion(new DateTime('now'));
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entrada);
+            $em->merge($entrada);
             $em->flush();
 
             return $this->redirectToRoute('home_profile');
@@ -92,8 +90,6 @@ class DefaultController extends Controller
 
         $em->remove($entradaPorEliminar);
         $em->flush();
-
-        $this->addFlash('info', 'Registro borrado');
 
         $path= substr($request->headers->get('referer'),-13,13);
 

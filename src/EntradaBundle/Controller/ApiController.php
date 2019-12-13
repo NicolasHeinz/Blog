@@ -3,6 +3,7 @@
 namespace EntradaBundle\Controller;
 
 use DateTime;
+use LoginBundle\Entity\User;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -35,7 +36,7 @@ class ApiController extends Controller
 
                 array_push($entradasArray, [
                     'id' => $entrada->getId(),
-                    'user_id' => $entrada->getUserId(),
+                    'user' => $entrada->getUser(),
                     'titulo'=> $entrada->getTitulo(),
                     'cuerpo' => $entrada->getCuerpo(),
                     'created_date' => $entrada->getFechaCreacion()
@@ -62,7 +63,7 @@ class ApiController extends Controller
 
             $arr = [
                 'id' => $entradas->getId(),
-                'user_id' => $entradas->getUserId(),
+                'user' => $entradas->getUser(),
                 'titulo' => $entradas->getTitulo(),
                 'cuerpo' => $entradas->getCuerpo(),
                 'created_date' => $entradas->getFechaCreacion()
@@ -85,21 +86,25 @@ class ApiController extends Controller
             ($request->get('titulo') != null) &&
             ($request->get('cuerpo') != null) ){
 
+            $user = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->find($request->get('user_id'));
+
             $entrada = new Entrada();
 
-            $entrada->setUserId($request->get('user_id'));
+            $entrada->setUser($user);
             $entrada->setTitulo($request->get('titulo'));
             $entrada->setCuerpo($request->get('cuerpo'));
             $entrada->setFechaCreacion(new DateTime());
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entrada);
+            $em->merge($entrada);
             $em->flush();
             $em->clear();
 
             return new JsonResponse([
                 'id' => $entrada->getId(),
-                'user_id' => $entrada->getUserId(),
+                'user' => $entrada->getUser()->getId(),
                 'titulo' => $entrada->getTitulo(),
                 'cuerpo' => $entrada->getCuerpo(),
                 'created_date' => $entrada->getFechaCreacion()
@@ -119,19 +124,19 @@ class ApiController extends Controller
             ->getRepository(Entrada::class);
         $entrada = $repository->find($request->get('id'));
 
-        if(!empty($entrada)){
-            $entrada->getUserId($request->get('user_id'));
+        if( (!empty($entrada)) &&
+            ($entrada->getUser()->getId() == $request->get('user_id'))){
+
             $entrada->setTitulo($request->get('titulo'));
             $entrada->setCuerpo($request->get('cuerpo'));
 
             $em = $this->getDoctrine()->getManager();
-            $em->persist($entrada);
             $em->flush();
             $em->clear();
 
             return new JsonResponse([
                 'id' => $entrada->getId(),
-                'user_id' => $entrada->getUserId(),
+                'user' => $entrada->getUser()->getId(),
                 'titulo' => $entrada->getTitulo(),
                 'cuerpo' => $entrada->getCuerpo(),
                 'created_date' => $entrada->getFechaCreacion()

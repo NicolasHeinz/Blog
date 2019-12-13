@@ -3,13 +3,16 @@
 namespace EntradaBundle\DataFixtures\ORM;
 
 use DateTime;
+use Doctrine\Common\DataFixtures\AbstractFixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Common\DataFixtures\FixtureInterface;
-use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use EntradaBundle\Entity\Entrada;
+use LoginBundle\DataFixtures\ORM\LoadUserData;
+use LoginBundle\Entity\User;
 
 
-class LoadPostData implements FixtureInterface/*,OrderedFixtureInterface*/
+class LoadPostData extends AbstractFixture implements FixtureInterface , DependentFixtureInterface
 {
     /**
      *
@@ -17,29 +20,23 @@ class LoadPostData implements FixtureInterface/*,OrderedFixtureInterface*/
      */
     public function load(ObjectManager $manager)
     {
-        for ($i = 497; $i < 597; $i++) {
-            $this->createPost($manager, $i);
-        }
-    }
+        /** @var User $user1 */
+        $user1 = $this->getReference(LoadUserData::USER1);
 
-    /**
-     *
-     * @param ObjectManager $manager
-     * @param type $n
-     */
-    private function createPost(ObjectManager $manager, $n)
-    {
         $entradas = new Entrada();
-        $entradas->setUserId($n);
-        $entradas->setTitulo("Titulo".$n);
-        $entradas->setCuerpo("Cuerpo".$n);
+
+        $entradas->setUser($user1);
+        $entradas->setTitulo("Titulo");
+        $entradas->setCuerpo("Cuerpo");
         $entradas->setFechaCreacion(new DateTime());
         $manager->persist($entradas);
         $manager->flush();
     }
 
-    /*public function getOrder()
+    public function getDependencies()
     {
-        return 2;
-    }*/
+        return array(
+            LoadUserData::class
+        );
+    }
 }

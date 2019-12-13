@@ -140,7 +140,7 @@ class DefaultController extends Controller
 
         $entradas = $repository->findBy(
             [
-                'user_id' => $request->getSession()->get('user')->getId()
+                'user' => $request->getSession()->get('user')->getId()
             ]
         );
 
@@ -184,7 +184,6 @@ class DefaultController extends Controller
             ]
         );
     }
-
 
     public function tableUsersTable()
     {

@@ -22,11 +22,10 @@ class Entrada
     private $id;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="user_id", type="string", length=255)
+     * @ORM\ManyToOne(targetEntity="LoginBundle\Entity\User" , inversedBy="entradas")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      */
-    private $user_id;
+    private $user;
 
     /**
      * @var string
@@ -154,5 +153,29 @@ class Entrada
     public function getUserId()
     {
         return $this->user_id;
+    }
+
+    /**
+     * Set user.
+     *
+     * @param \LoginBundle\Entity\User|null $user
+     *
+     * @return Entrada
+     */
+    public function setUser(\LoginBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user.
+     *
+     * @return \LoginBundle\Entity\User|null
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

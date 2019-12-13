@@ -2,6 +2,7 @@
 
 namespace LoginBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -29,6 +30,16 @@ class User implements UserInterface
      * @Assert\Valid
      */
     private $id;
+
+    /**
+     * @ORM\OneToMany(targetEntity="EntradaBundle\Entity\Entrada",mappedBy="user_id")
+     */
+    private $entradas;
+
+    public function __construct()
+    {
+        $this->entradas = new ArrayCollection();
+    }
 
     /**
      * @var string
@@ -327,5 +338,41 @@ class User implements UserInterface
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    /**
+     * Add entrada.
+     *
+     * @param \EntradaBundle\Entity\Entrada $entrada
+     *
+     * @return User
+     */
+    public function addEntrada(\EntradaBundle\Entity\Entrada $entrada)
+    {
+        $this->entradas[] = $entrada;
+
+        return $this;
+    }
+
+    /**
+     * Remove entrada.
+     *
+     * @param \EntradaBundle\Entity\Entrada $entrada
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeEntrada(\EntradaBundle\Entity\Entrada $entrada)
+    {
+        return $this->entradas->removeElement($entrada);
+    }
+
+    /**
+     * Get entradas.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEntradas()
+    {
+        return $this->entradas;
     }
 }
